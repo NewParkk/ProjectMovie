@@ -1,0 +1,8 @@
+**/**/*.jar
+**/**/*.project
+*/.settings/**
+**/**/*.springBeans
+*/target/**
+**/**/*.class
+**/**/*.classpath
+**/**/*.log
