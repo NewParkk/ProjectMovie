@@ -1,5 +1,5 @@
 package com.spring.cinema.mapper;
 
-public interface BookMapper {
+public interface MovieBookingMapper {
 
 }
