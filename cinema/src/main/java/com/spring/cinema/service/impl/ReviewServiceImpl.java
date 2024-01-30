@@ -1,5 +1,10 @@
 package com.spring.cinema.service.impl;
 
-public interface ReviewServiceImpl {
+import org.springframework.stereotype.Service;
+
+import com.spring.cinema.service.user.ReviewService;
+
+@Service
+public class ReviewServiceImpl implements ReviewService{
 
 }

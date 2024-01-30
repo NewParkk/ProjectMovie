@@ -1,5 +1,10 @@
 package com.spring.cinema.service.impl;
 
-public interface AdminServiceImpl {
+import org.springframework.stereotype.Service;
+
+import com.spring.cinema.service.user.AdminService;
+
+@Service
+public class AdminServiceImpl implements AdminService {
 
 }
