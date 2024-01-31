@@ -17,12 +17,13 @@
             <a href="/registration">영화 등록</a>
             </div>
             <div class ="log">
-            <c:if test="${empty sessionScope.user}">
+            <c:if test="${empty sessionScope.userId}">
                 <a href="/login">로그인</a>
-                <a href="/sign">회원가입</a>
+                <a href="/sign">회원 가입</a>
             </c:if>
-            <c:if test="${not empty sessionScope.user}">
-               <a href="/logout">로그아웃</a>
+            <c:if test="${not empty sessionScope.userId}">
+            	<a href="/userinfo">회원 정보</a>
+               <a href="/logout">로그 아웃</a>
             </c:if>
             </div>
             </div>

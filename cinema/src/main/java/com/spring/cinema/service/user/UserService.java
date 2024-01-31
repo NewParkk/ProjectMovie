@@ -16,8 +16,9 @@ public class UserService {
 		this.userMapper = userMapper;
 	}
 
-	public User getUserByUsername(String username) {
-		return userMapper.getUserByUsername(username);
+	public User getUserByuserId(String userId) {
+	
+		return userMapper.getUserByuserId(userId);
 	}
 
 	public boolean insertUser(User newUser) {

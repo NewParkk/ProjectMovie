@@ -75,10 +75,10 @@
     <div id="login-form">
         <h2>로그인</h2>
         <form action="/log" method="post">
-            <label for="username">아이디:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">비밀번호:</label>
-            <input type="password" id="password" name="password" required>
+            <label for="userId">아이디:</label>
+            <input type="text" id="userId" name="userId" required>
+            <label for="userPassword">비밀번호:</label>
+            <input type="password" id="userPassword" name="userPassword" required>
             <button type="submit">로그인</button>
         </form>
         <div id="signup-link">

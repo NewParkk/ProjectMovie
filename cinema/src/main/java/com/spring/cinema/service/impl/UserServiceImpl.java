@@ -4,5 +4,5 @@ import com.spring.cinema.model.User;
 
 public interface UserServiceImpl {
 	
-	User getUserByUsername(String username);
+	User getUserByuserId(String userId);
 }

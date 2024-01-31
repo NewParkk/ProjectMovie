@@ -8,7 +8,7 @@ import com.spring.cinema.model.User;
 @Mapper
 public interface UserMapper {
 
-	User getUserByUsername(@Param("username") String username);
+	User getUserByuserId(@Param("userId") String userId);
 
 	void insertUser(User newUser);
 }

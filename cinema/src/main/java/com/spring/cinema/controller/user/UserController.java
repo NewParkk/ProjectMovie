@@ -25,57 +25,15 @@ public class UserController {
 		this.userService = userService;
 	}
 	
-	@GetMapping(value = "/main")
-	public String movieHome()  {
-		return "main";
-	}
-	@GetMapping(value = "/movielist")
-	public String movieList()  {
-		return "movielist";
-	}
-	@GetMapping(value = "/review")
-	public String movieReview()  {
-		return "review";
-	}
-	@GetMapping(value = "/book")
-	public String movieBook()  {
-		return "booking";
-	}
-	
-	@GetMapping(value = "/registration")
-	public String movieRegistration()  {
-		return "registrationMv";
-	}
-	
-	@GetMapping(value = "/detail")
-	public String movieShow()  {
-		return "movieDetail";
-	}
-	
-	
-	@GetMapping(value = "/login")
-	public String Login()  {
-		
-//		if (user.getIsAdmin()) {
-//			return "redirect:/adminPage";
-//		} else {
-//			return "redirect:main";
-//		}
-//	} else {
-//		return "redirect:/login?error=true";
-//	}
-		return "login";
-	}
 	@PostMapping("/log")
-	public String login(@RequestParam("username") String username, @RequestParam("password") String password,
+	public String login(@RequestParam("userId") String userId, @RequestParam("userPassword") String userPassword,
 			HttpSession session) {
-		User user = userService.getUserByUsername(username);
-
-		if (user != null && BCrypt.checkpw(password, user.getPassword())) {
-			session.setAttribute("user", user.getUsername());
-			session.setAttribute("loggedInUserId", user.getId());
-			session.setAttribute("isAdmin", user.getIsAdmin());
-			if (user.getIsAdmin()) {
+		User user = userService.getUserByuserId(userId);
+		if (user != null && BCrypt.checkpw(userPassword, user.getUserPassword())) {
+			
+			session.setAttribute("userId", user.getUserId());
+			session.setAttribute("userAdmin", user.getUserAdmin());
+			if (user.getUserAdmin()) {
 				return "redirect:/admin/dashboard";
 			} else {
 				return "redirect:/main";
@@ -96,8 +54,8 @@ public class UserController {
 	}
 	@PostMapping(value = "/signup")
 	public String SingUp(@ModelAttribute User newUser)  {
-		String hashedPassword = BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt());
-		newUser.setPassword(hashedPassword);
+		String hashedPassword = BCrypt.hashpw(newUser.getUserPassword(), BCrypt.gensalt());
+		newUser.setUserPassword(hashedPassword);
 
 		boolean result = userService.insertUser(newUser);
 		if (result) {
