@@ -21,7 +21,10 @@
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1),
+			            -1px -1px 10px rgba(0, 0, 0, 0.1),
+			            1px -1px 10px rgba(0, 0, 0, 0.1),
+			            -1px 1px 10px rgba(0, 0, 0, 0.1);
         }
 
         #signup-form h2 {
@@ -85,11 +88,8 @@
             <input type="text" id="userBirth" name="userBirth" required>
             <label for="userGender">성별:</label>
             <input type="text" id="userGender" name="userGender" required>
-            <button type="submit">회원가입</button>
+            <button type="submit">정보 변경</button>
         </form>
-        <div id="login-link">
-            <a href="">로그인</a>
-        </div>
     </div>
 </body>
 </html>

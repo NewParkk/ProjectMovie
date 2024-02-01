@@ -21,7 +21,10 @@
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1),
+			            -1px -1px 10px rgba(0, 0, 0, 0.1),
+			            1px -1px 10px rgba(0, 0, 0, 0.1),
+			            -1px 1px 10px rgba(0, 0, 0, 0.1);
         }
 
         #signup-form h2 {
@@ -53,21 +56,13 @@
             background-color: #007bff;
             color: #fff;
             cursor: pointer;
+            margin-top: -10px;
         }
 
         #signup-form button:hover {
             background-color: #0056b3;
         }
 
-        #login-link {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        #login-link a {
-            color: blue;
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
@@ -89,9 +84,7 @@
             <input type="text" id="userGender" name="userGender" required>
             <button type="submit">회원가입</button>
         </form>
-        <div id="login-link">
-            <a href="">로그인</a>
-        </div>
+
     </div>
 </body>
 </html>
