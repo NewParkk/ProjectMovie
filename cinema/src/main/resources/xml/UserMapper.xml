@@ -6,16 +6,17 @@
 
 
 	<!-- 사용자 이름으로 사용자 조회 -->
-	<select id="getUserByuserId" parameterType="string" resultType="com.spring.cinema.model.User">
-		SELECT user_id as userId,
-				user_name as userName,
-				user_password as userPassword,
-				user_birth as userBirth,
-				user_gender as userGender,
-				user_admin as userAdmin 
+	<select id="getUserByuserId" parameterType="string" resultType="User">
+		SELECT user_id,
+				user_name,
+				user_password,
+				user_birth,
+				user_gender,
+				user_admin 
 				FROM user
 				 WHERE user_id = #{userId}
 	</select>
+	
 	
 		<insert id="insertUser"
 		parameterType="com.spring.cinema.model.User">
@@ -25,4 +26,13 @@
 		#{userBirth},#{userGender}
 		)
 	</insert>
+	
+	
+	<update id="updateUser" parameterType="com.spring.cinema.model.User">
+        UPDATE user SET user_name = #{userName}, 
+        				user_password = #{userPassword}, 
+        				user_birth = #{userBirth}, 
+        				user_gender = #{userGender}
+        WHERE user_id = #{userId}
+    </update>
 	</mapper>

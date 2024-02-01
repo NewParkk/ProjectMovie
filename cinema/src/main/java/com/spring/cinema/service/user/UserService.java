@@ -1,5 +1,7 @@
 package com.spring.cinema.service.user;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,8 @@ public class UserService {
 		this.userMapper = userMapper;
 	}
 
+	
+	
 	public User getUserByuserId(String userId) {
 	
 		return userMapper.getUserByuserId(userId);
@@ -30,4 +34,19 @@ public class UserService {
 			return false; 
 		}
 	}
+
+
+
+	public boolean updateUserById(User user) {
+		try {
+			userMapper.updateUser(user);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false; 
+		}
+	}
+
+
+
 }

@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>로그인 페이지</title>
+    <title>회원가입 페이지</title>
     <style>
         body {
             display: flex;
@@ -15,38 +15,38 @@
             background-color: #fff;
         }
 
-        #login-form {
+        #signup-form {
             width: 600px;
-            height: 400px;
+            height: 700px;
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        #login-form h2 {
+        #signup-form h2 {
             text-align: center;
         }
 
-        #login-form form {
+        #signup-form form {
             display: flex;
             flex-direction: column;
             gap: 10px;
             margin-top: 20px;
         }
 
-        #login-form label {
+        #signup-form label {
             font-weight: bold;
         }
 
-        #login-form input[type="text"],
-        #login-form input[type="password"] {
+        #signup-form input[type="text"],
+        #signup-form input[type="password"] {
             padding: 10px;
             border-radius: 5px;
             border: 1px solid #ccc;
         }
 
-        #login-form button {
+        #signup-form button {
             padding: 10px;
             border: none;
             border-radius: 5px;
@@ -55,36 +55,42 @@
             cursor: pointer;
         }
 
-        #login-form button:hover {
+        #signup-form button:hover {
             background-color: #0056b3;
         }
 
-        #signup-link {
+        #login-link {
             text-align: center;
             margin-top: 20px;
         }
 
-        #signup-link a {
+        #login-link a {
             color: blue;
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
-  <%@ include file="header.jsp" %>
-    <div id="login-form">
-        <h2>로그인</h2>
-        <form action="/log" method="post">
-            <label for="userId">아이디:</label>
-            <input type="text" id="userId" name="userId" required>
+ <%@ include file="header.jsp" %>
+    <div id="signup-form">
+        <h2>회원 정보 변경</h2>
+        <form action="/userUpdate/${sessionScope.userId}" method="post">
             <label for="userPassword">비밀번호:</label>
             <input type="password" id="userPassword" name="userPassword" required>
-            <button type="submit">로그인</button>
+            <label for="confirm-password">비밀번호 확인:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+            <label for="userName">이름:</label>
+            <input type="text" id="userName" name="userName" required>
+            <label for="userBirth">생일:</label>
+            <input type="text" id="userBirth" name="userBirth" required>
+            <label for="userGender">성별:</label>
+            <input type="text" id="userGender" name="userGender" required>
+            <button type="submit">회원가입</button>
         </form>
-        <div id="signup-link">
-            <a href="/sign">회원가입</a>
+        <div id="login-link">
+            <a href="">로그인</a>
         </div>
     </div>
-    
 </body>
 </html>
+

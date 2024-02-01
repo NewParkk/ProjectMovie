@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.cinema.model.User;
@@ -19,12 +19,12 @@ import com.spring.cinema.service.user.UserService;
 public class UserController {
 	
 	private final UserService userService;
-
+	//서버 매핑
 	@Autowired
 	public UserController(UserService userService) {
 		this.userService = userService;
 	}
-	
+	//로그인
 	@PostMapping("/log")
 	public String login(@RequestParam("userId") String userId, @RequestParam("userPassword") String userPassword,
 			HttpSession session) {
@@ -42,16 +42,18 @@ public class UserController {
 			return "redirect:/login?error=true";
 		}
 	}
-
+	//로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/main";
 	}
+	//회원가입 홈페이지 가기
 	@GetMapping(value = "/sign")
 	public String Sign() {
 		return "registaluser";
 	}
+	//회원가입
 	@PostMapping(value = "/signup")
 	public String SingUp(@ModelAttribute User newUser)  {
 		String hashedPassword = BCrypt.hashpw(newUser.getUserPassword(), BCrypt.gensalt());
@@ -63,5 +65,27 @@ public class UserController {
 		} else {
 			return "redirect:/register?error=true";
 		}
+	}
+	//회원 정보 변경
+	@PostMapping(value= "/userUpdate/{userId}")
+	public String userUpdate(@PathVariable String userId,
+								@RequestParam String userName,
+								@RequestParam String userPassword,
+								@RequestParam Integer userBirth,
+								@RequestParam String  userGender) {
+		
+		User user = userService.getUserByuserId(userId);
+		String hashedPassword = BCrypt.hashpw(userPassword, BCrypt.gensalt());
+		user.setUserName(userName);
+		user.setUserPassword(hashedPassword);
+		user.setUserBirth(userBirth);
+		user.setUserGender(userGender);
+		boolean result = userService.updateUserById(user);
+		if (result) {
+			return "redirect:/main";
+		} else {
+			return "redirect:/error";
+		}
+	
 	}
 }
