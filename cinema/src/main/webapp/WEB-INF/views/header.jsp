@@ -8,6 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script src="/resources/js/chatbot.js" defer></script> 
+<div class="header-container">
 <header>
     <div class="logo">
         <a href="main"><img src="/resources/img/로고.png" style="width:100px;"></a>
@@ -33,6 +34,7 @@
             </div>
             </div>
 </header>
+</div>
 
 <div class="chat-box">
   <div class="chat-box-header">

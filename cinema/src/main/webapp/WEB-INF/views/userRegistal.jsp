@@ -5,13 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <title>회원가입 페이지</title>
-     <link rel="stylesheet" href="/resources/css/updateuser.css">
+    <link rel="stylesheet" href="/resources/css/usersignup.css">
 </head>
 <body>
  <%@ include file="header.jsp" %>
     <div id="signup-form">
-        <h2>회원 정보 변경</h2>
-        <form action="/userUpdate/${sessionScope.userId}" method="post">
+        <h2>회원가입</h2>
+        <form action="/signup" method="post">
+            <label for="userId">아이디:</label>
+            <input type="text" id="userId" name="userId" required>
             <label for="userPassword">비밀번호:</label>
             <input type="password" id="userPassword" name="userPassword" required>
             <label for="confirm-password">비밀번호 확인:</label>
@@ -22,9 +24,9 @@
             <input type="text" id="userBirth" name="userBirth" required>
             <label for="userGender">성별:</label>
             <input type="text" id="userGender" name="userGender" required>
-            <button type="submit">정보 변경</button>
+            <button type="submit">회원가입</button>
         </form>
+
     </div>
 </body>
 </html>
-

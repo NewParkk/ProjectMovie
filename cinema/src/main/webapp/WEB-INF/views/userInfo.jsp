@@ -11,12 +11,15 @@
 </head>
 <body>
     <div class="sidebar">
-        <a href="/main" class="sidebar-link"><h2>Information</h2></a>
+    	<div class="logo">
+        <a href="main"><img src="/resources/img/로고.png" style="width:100px;"></a>
+    </div>
+        <a class="sidebar-link"><h2>Information</h2></a>
 
         <div class="content">
             <div class="button-box">
                 <ul>
-                    <li><a href="#" class="button">예약 확인</a></li>
+                    <li><a href="#book-list" class="button">예약 확인</a></li>
                     <li><a href="#" class="button">캐시 충전</a></li>
                     <li><a href="#review-list" class="button">내가 쓴 리뷰 보기</a></li>
                     <li><a href="#" class="button">고객 센터</a></li>
@@ -53,7 +56,7 @@
                 <a>dfsgdsfgdsfg</a>
             </div>
         </div>
-        <div class="box">
+        <div class="box" id="book-list">
             <h1>예매 목록</h1>
             <div class="small-box">
                 <a>dfsgdsfgdsfg</a>

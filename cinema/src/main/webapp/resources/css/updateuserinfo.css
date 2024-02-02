@@ -1,0 +1,58 @@
+ 		body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 700px;
+            margin: 0;
+            background-color: #fff;
+        }
+
+        #update-form {
+        	margin-top: 150px;
+            width: 600px;
+            height: 650px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1),
+			            -1px -1px 10px rgba(0, 0, 0, 0.1),
+			            1px -1px 10px rgba(0, 0, 0, 0.1),
+			            -1px 1px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #update-form h2 {
+            text-align: center;
+        }
+
+        #update-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        #update-form label {
+            font-weight: bold;
+        }
+
+        #update-form input[type="text"],
+        #update-form input[type="password"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        #update-form button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #update-form button:hover {
+            background-color: #0056b3;
+        }
+
+      

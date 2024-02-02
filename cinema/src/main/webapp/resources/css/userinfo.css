@@ -8,7 +8,7 @@
 		    overflow-y: auto;
 		    border: 1px solid #ccc;
 		    transform: translateY(-50%);
-		    transition: width 0.3s ease; /* 추가: 화면 크기 변화에 따라 부드럽게 전환 */
+		    transition: width 0.3s ease; 
 		}
 		.sidebar-link{
 		    text-decoration: none; 
@@ -97,13 +97,13 @@
 		         top: 50%;
 		         left: 50%;
 		         transform: translate(-50%, -50%);
-		         background-color: rgba(255, 255, 255, 1); /* 하얀색 배경 */
+		         background-color: rgba(255, 255, 255, 1); 
 		         padding: 20px;
-		         border: 2px solid black; /* 경계선 */
+		         border: 2px solid black;
 		         border-radius: 5px;
 		         z-index: 9999;
-		         color: black; /* 텍스트 색상 */
-		         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 그림자 효과 */
+		         color: black; 
+		         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
 		}
 		
 		.modal-content {
@@ -131,4 +131,10 @@
 		
 		#deleteButton:hover {
 		  		 background-color: #e0e0e0;
+		}
+		.logo{
+		    display: flex;
+		    justify-content: center;
+			margin-top:10px;
+		    margin-bottom: 20px; 
 		}
