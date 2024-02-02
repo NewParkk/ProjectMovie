@@ -23,7 +23,6 @@
             </div>
             <div class ="log">
             <c:if test="${empty sessionScope.userId}">
-           	   <a href="/chatbot">챗봇</a>
                 <a href="/login">로그인</a>
                 <a href="/sign">회원가입</a>
             </c:if>
