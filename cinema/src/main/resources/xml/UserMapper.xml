@@ -35,4 +35,11 @@
         				user_gender = #{userGender}
         WHERE user_id = #{userId}
     </update>
+   
+    <delete id="userDelete" parameterType="String">
+    	DELETE 
+    	FROM user 
+    	WHERE user_id = #{userId}
+    
+    </delete>
 	</mapper>

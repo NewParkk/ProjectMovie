@@ -49,4 +49,15 @@ public class UserService {
 
 
 
+	public boolean userDelete(String userId) {
+		try {
+			userMapper.userDelete(userId);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false; 
+		}
+	}
+
+
 }

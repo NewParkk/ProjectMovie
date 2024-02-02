@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.cinema.model.User;
 import com.spring.cinema.service.user.UserService;
@@ -48,11 +49,7 @@ public class UserController {
 		session.invalidate();
 		return "redirect:/main";
 	}
-	//회원가입 홈페이지 가기
-	@GetMapping(value = "/sign")
-	public String Sign() {
-		return "registaluser";
-	}
+
 	//회원가입
 	@PostMapping(value = "/signup")
 	public String SingUp(@ModelAttribute User newUser)  {
@@ -88,4 +85,17 @@ public class UserController {
 		}
 	
 	}
+	
+	@GetMapping(value="/userDelete/{userId}")
+	public String userDelete(@PathVariable String userId) {
+		System.out.println(userId);
+		boolean result = userService.userDelete(userId);
+		if(result) {
+			System.out.println(result);
+			return "redirect:/login";
+		}else {
+		return "redirect:/error";
+		}
+	}
+
 }

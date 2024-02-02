@@ -3,6 +3,11 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/chatbot.css">
+<script src="https://kit.fontawesome.com/37dd76a909.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="/resources/js/chatbot.js" defer></script> 
 <header>
     <div class="logo">
         <a href="main"><img src="/resources/img/로고.png" style="width:100px;"></a>
@@ -18,6 +23,7 @@
             </div>
             <div class ="log">
             <c:if test="${empty sessionScope.userId}">
+           	   <a href="/chatbot">챗봇</a>
                 <a href="/login">로그인</a>
                 <a href="/sign">회원가입</a>
             </c:if>
@@ -28,13 +34,36 @@
             </div>
             </div>
 </header>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var toggleButton = document.getElementById('toggle');
-    var navMenu = document.querySelector('.nav_menu');
-    toggleButton.addEventListener('click', function() {
-        navMenu.classList.toggle('active');
-    });
-});
 
-</script>
+<div class="chat-box">
+  <div class="chat-box-header">
+      <h3>Message Us</h3>
+      <p>
+        <i class="fa fa-times"></i> 
+      </p>
+  </div>
+  <div id="chat-box" class="chat-box-body">
+    <div class="chat-box-body-receive">
+      <p>문의사항 번호를 입력해주세요.</p>
+      <p>1)영화 예매 방법 2)회원 가입 방법 3)회원 가입 오류 4)고객 센터</p>
+    </div>
+  </div>
+  <div class="chat-box-footer">
+      <input id="msg" placeholder="Enter Your Message" type="text">
+      <i class="send far fa-paper-plane" id="button-send"></i>
+  </div>
+</div>
+
+
+
+<div class="chat-button">
+  <span></span>
+</div>
+
+
+<div class="modal">
+        <div class="modal-content">
+            <span class="modal-close-button">&times;</span>
+            <h1>Add What you want here.</h1>
+        </div>
+</div>

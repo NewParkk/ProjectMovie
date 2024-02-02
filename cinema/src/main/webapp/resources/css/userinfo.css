@@ -1,91 +1,134 @@
-.sidebar {
-    position: fixed;
-    top: 50%;
-    left: 0;
-    width: 200px;
-    height: 100%;
-    background-color: #f0f0f0;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    transform: translateY(-50%);
-    transition: width 0.3s ease; /* 추가: 화면 크기 변화에 따라 부드럽게 전환 */
-}
-.sidebar-link{
-    text-decoration: none; 
-    color: inherit; 
-}
-.content {
-    margin-top: 50px;
-    text-align: center;
-}
-
-.button-box ul,
-.button-log ul {
-	
-    padding: 0;
-    list-style: none;
-    margin: 0; 
-}
-
-.button-box li,
-.button-log li {
-    margin-bottom: 1px;
-}
-
-.button-box a,
-.button-log a {
-    display: block;
-    color: #333;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    text-decoration: none;
-    line-height: 40px;
-}
-
-.button-box a:hover,
-.button-log a:hover {
-    background-color: #e0e0e0;
-    width:100%;
-}
-
-.sidebar h2 {
-    color: black;
-    text-align: center;
-}
-
-
-
-.container {
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: center;
-    align-items: center; 
-    margin-left: 200px;
-    height: 100vh; 
-}
-
-.box {
-    padding: 15px;
-    box-shadow: 1px 1px 2px 4px rgba(0.1, 0.1, 0.1, 0.1);
-    border-radius: 5px;
-    overflow: hidden;
-    width: calc(50% - 15px);
-    height: 400px;
-    margin-bottom: 30px;
-    background-color: #f8f8f8;
-   
-}
-
-.box h1 {
-    text-align: center;
-}
-
-
-.small-box {
-		height: 300px;
-		border: 1px solid #ccc;
-		background-color: white;
-		margin: 8px; 
-		overflow-y: auto; 
-}
+		.sidebar {
+		    position: fixed;
+		    top: 50%;
+		    left: 0;
+		    width: 200px;
+		    height: 100%;
+		    background-color: #f0f0f0;
+		    overflow-y: auto;
+		    border: 1px solid #ccc;
+		    transform: translateY(-50%);
+		    transition: width 0.3s ease; /* 추가: 화면 크기 변화에 따라 부드럽게 전환 */
+		}
+		.sidebar-link{
+		    text-decoration: none; 
+		    color: inherit; 
+		}
+		.content {
+		    margin-top: 50px;
+		    text-align: center;
+		}
+		
+		.button-box ul,
+		.button-log ul {
+			
+		    padding: 0;
+		    list-style: none;
+		    margin: 0; 
+		}
+		
+		.button-box li,
+		.button-log li {
+		    margin-bottom: 1px;
+		}
+		
+		.button-box a,
+		.button-log a {
+			font-size:15px;
+		    display: block;
+		    color: #333;
+		    border: none;
+		    cursor: pointer;
+		    width: 100%;
+		    text-decoration: none;
+		    line-height: 40px;
+		}
+		
+		.button-box a:hover,
+		.button-log a:hover {
+		    background-color: #e0e0e0;
+		    width:100%;
+		}
+		
+		.sidebar h2 {
+		    color: black;
+		    text-align: center;
+		}
+		
+		
+		
+		.container {
+		    display: flex;
+		    flex-wrap: wrap; 
+		    justify-content: center;
+		    align-items: center; 
+		    margin-left: 200px;
+		    height: 100vh; 
+		}
+		.box {
+		    padding: 15px;
+		    box-shadow: 1px 1px 2px 4px rgba(0.1, 0.1, 0.1, 0.1);
+		    border-radius: 5px;
+		    overflow: hidden;
+		    width: calc(50% - 15px);
+		    height: 400px;
+		    margin-bottom: 30px;
+		    background-color: #f8f8f8;
+		   
+		}
+		
+		.box h1 {
+		    text-align: center;
+		}
+		
+		
+		.small-box {
+				height: 300px;
+				border: 1px solid #ccc;
+				background-color: white;
+				margin: 8px; 
+				overflow-y: auto; 
+		}
+		
+		
+		.modal-container {
+		         display: none;
+		         position: fixed;
+		         top: 50%;
+		         left: 50%;
+		         transform: translate(-50%, -50%);
+		         background-color: rgba(255, 255, 255, 1); /* 하얀색 배경 */
+		         padding: 20px;
+		         border: 2px solid black; /* 경계선 */
+		         border-radius: 5px;
+		         z-index: 9999;
+		         color: black; /* 텍스트 색상 */
+		         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 그림자 효과 */
+		}
+		
+		.modal-content {
+		          text-align: center;
+		}
+		
+		.modal-button {
+		          margin-top: 20px;
+		}
+		#deleteButton {
+			    font-size:15px;
+			    display: block;
+			    color: #333;
+			    border: none;
+			    cursor: pointer;
+			    width: 100%;
+			    text-decoration: none;
+			    line-height: 40px;
+			    background-color: transparent;
+			    transition: background-color 0.3s ease;
+			    text-align: center;
+			    border-radius: 5px;
+			    margin-bottom: 10px;
+		}
+		
+		#deleteButton:hover {
+		  		 background-color: #e0e0e0;
+		}
