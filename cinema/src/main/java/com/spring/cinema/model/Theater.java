@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 public class Theater {
 	private int theaterId;
 	private int movieId;
-	private int theaterLoc;
+	private String theaterLoc;
 	private int theaterLocdetail;
 	
 	@Builder
-	public Theater(int theaterId, int movieId, int theaterLoc, int theaterLocdetail) {
+	public Theater(int theaterId, int movieId, String theaterLoc, int theaterLocdetail) {
 		this.theaterId = theaterId;
 		this.movieId = movieId;
 		this.theaterLoc = theaterLoc;

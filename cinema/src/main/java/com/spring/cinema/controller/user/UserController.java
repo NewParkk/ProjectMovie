@@ -37,10 +37,10 @@ public class UserController {
 	public String movieReview()  {
 		return "review";
 	}
-	@GetMapping(value = "/book")
-	public String movieBook()  {
-		return "booking";
-	}
+	
+	
+		
+	
 	
 	@GetMapping(value = "/registration")
 	public String movieRegistration()  {
