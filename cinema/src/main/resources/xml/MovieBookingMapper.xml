@@ -14,11 +14,27 @@
 		FROM movie
 	</select>
 	
-	<select id="getTheaterBymovieId" parameterType="_int" resultType="theater">
+	<resultMap type="com.spring.cinema.model.Theater" id="theaterResult">
+		<result property="theaterId" column="theater_id"/>
+		<result property="movieId" column="movie_id"/>
+		<result property="theaterLoc" column="theater_loc"/>
+	</resultMap>
+	<select id="getTheaterBymovieId" parameterType="_int" resultMap="theaterResult">
 		SELECT theater_id,
 			   movie_id,
 			   theater_loc
 		FROM theater
+		WHERE movie_id = #{movieId}
+	</select>
+	
+	
+	
+	
+	<select id="getdateBymovieId" parameterType="_int" resultType="com.spring.cinema.model.MovieInfo">
+		SELECT distinct theater_id AS theatherId,
+				date_format(movie_info_date, '%Y-%m-%d') AS movieInfoDate,
+				movie_id AS movieId
+		FROM movie_info
 		WHERE movie_id = #{movieId}
 	</select>
 

@@ -1,8 +1,6 @@
 package com.spring.cinema.model;
 
-import java.util.Date;
 
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,16 +9,11 @@ import lombok.NoArgsConstructor;
 public class MovieInfo {
 	private int movieInfoId;
 	private int theaterId;
-	private Date movieInfoDate;
-	private Date movieInfoTime;
+	private String movieInfoDate;
+	private String movieInfoTime;
+	private int movieId;
 	
-	@Builder
-	public MovieInfo(int movieInfoId, int theaterId, Date movieInfoDate, Date movieInfoTime) {
-		this.movieInfoId = movieInfoId;
-		this.theaterId = theaterId;
-		this.movieInfoDate = movieInfoDate;
-		this.movieInfoTime = movieInfoTime;
-	}
+	 
 	
 	
 }

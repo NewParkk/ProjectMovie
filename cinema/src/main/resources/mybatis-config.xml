@@ -12,7 +12,7 @@
 	</typeAliases>
 	
 	<mappers>
-		<mapper resource="classpath:xml/MovieBookingMapper.xml"/>
+		<mapper resource="/xml/MovieBookingMapper.xml"/>
 	</mappers>
 
 

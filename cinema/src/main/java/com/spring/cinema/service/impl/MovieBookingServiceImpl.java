@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.cinema.mapper.MovieBookingMapper;
 import com.spring.cinema.model.Movie;
+import com.spring.cinema.model.MovieInfo;
 import com.spring.cinema.model.Theater;
 import com.spring.cinema.service.user.MovieBookingService;
 
@@ -31,5 +32,13 @@ public class MovieBookingServiceImpl implements MovieBookingService{
 		
 		return movieBookingMapper.getTheaterBymovieId(movieId);
 	}
+
+
+	@Override
+	public List<MovieInfo> getdateBymovieId(int movieId) {
+		return movieBookingMapper.getdateBymovieId(movieId);
+	}
+	
+	
 	
 }
