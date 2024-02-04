@@ -17,18 +17,13 @@ public class User {
 
 	private String userId;
 	
-
 	private String userName;
 	
-
 	private String userPassword;
-	
 
 	private Integer userBirth;
 	
-
 	private String  userGender;
 	 
-
 	private Boolean userAdmin;
 }

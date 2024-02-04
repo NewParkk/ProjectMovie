@@ -50,13 +50,25 @@
         #login-form button:hover {
             background-color: #0056b3;
         }
-
-        #signup-link {
-            text-align: center;
-            margin-top: 20px;
+		#signup-link{
+			text-align: center;
+		}
+		.button {
+			margin-top:10px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
-        #signup-link a {
-            color: blue;
-            text-decoration: underline;
+        /* 버튼에 마우스 호버 효과 */
+        .button:hover {
+            background-color: darkblue;
         }
+       

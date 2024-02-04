@@ -17,7 +17,7 @@
 				 WHERE user_id = #{userId}
 	</select>
 	
-	
+	<!-- 사용자 정보 추가 -->
 		<insert id="insertUser"
 		parameterType="com.spring.cinema.model.User">
 		INSERT INTO user (user_id, user_name, user_password, user_birth, user_gender
@@ -27,7 +27,7 @@
 		)
 	</insert>
 	
-	
+	<!-- 사용자 정보 변경 -->
 	<update id="updateUser" parameterType="com.spring.cinema.model.User">
         UPDATE user SET user_name = #{userName}, 
         				user_password = #{userPassword}, 
@@ -35,11 +35,18 @@
         				user_gender = #{userGender}
         WHERE user_id = #{userId}
     </update>
-   
-    <delete id="userDelete" parameterType="String">
+   <!-- 사용자 정보 삭제 -->
+    <delete id="userDelete" parameterType="string">
     	DELETE 
     	FROM user 
     	WHERE user_id = #{userId}
     
     </delete>
+    <!-- 사용자 아이디 찾기 -->
+    	<select id="getUserIdByNameAndBirth" parameterType="string" resultType="User">
+		SELECT *
+		FROM user
+		WHERE user_name = #{userName} 
+
+	</select>
 	</mapper>

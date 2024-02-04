@@ -1,10 +1,15 @@
 package com.spring.cinema.controller.user;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -83,7 +88,7 @@ public class UserController {
 		}
 	
 	}
-	
+	//회원 정보 삭제
 	@GetMapping(value="/userDelete/{userId}")
 	public String userDelete(@PathVariable String userId) {
 		System.out.println(userId);
@@ -95,5 +100,48 @@ public class UserController {
 		return "redirect:/error";
 		}
 	}
+	//회원 아이디 찾기
+	@PostMapping(value="/findId")
+	public String findId(@RequestParam String userName,
+						@RequestParam Integer userBirth, Model model) {
+		List<User> users= userService.getUserIdByNameAndBirth(userName);
+		for (User user : users) {
+		    if (user.getUserBirth().equals(userBirth)) {
+		    	model.addAttribute("user",user);
+		    	return "showId";
+		    }
+		}
+		return "redirect:/error";
+	}
+	//회원 비밀번호 찾기
+	@PostMapping(value="/findPw")
+	public String findPw(@RequestParam String userId ,
+						@RequestParam String userName, 
+						@RequestParam Integer userBirth, 
+						Model model) {
+		List<User> users= userService.getUserIdByNameAndBirth(userName);
+		for (User user : users) {
+		    if (user.getUserBirth().equals(userBirth) && user.getUserId().equals(userId)
+		    		&&user != null) {
+		    	model.addAttribute("user",user);
+		    	return "showPw";
+		    }
+		}
+		return userName;
+	}
+	
+	@PostMapping(value="/chagePw/{userId}")
+	public String findPw(@PathVariable String userId,
+						@RequestParam String userPassword) {
+		User user = userService.getUserByuserId(userId);
+		String hashedPassword = BCrypt.hashpw(userPassword, BCrypt.gensalt());
+    	user.setUserPassword(hashedPassword);
+    	boolean result = userService.updateUserById(user);
+		if (result) {
+			return "redirect:/login";
+		} else {
+			return "redirect:/error";
+		}
 
-}
+    }
+	}

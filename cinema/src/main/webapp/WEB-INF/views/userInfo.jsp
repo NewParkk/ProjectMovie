@@ -12,7 +12,7 @@
 <body>
     <div class="sidebar">
     	<div class="logo">
-        <a href="main"><img src="/resources/img/로고.png" style="width:100px;"></a>
+        <a href="/main"><img src="/resources/img/로고.png" style="width:100px;"></a>
     </div>
         <a class="sidebar-link"><h2>Information</h2></a>
 

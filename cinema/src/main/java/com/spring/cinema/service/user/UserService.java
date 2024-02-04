@@ -1,5 +1,6 @@
 package com.spring.cinema.service.user;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,13 @@ public class UserService {
 			e.printStackTrace();
 			return false; 
 		}
+	}
+
+
+
+	public List<User> getUserIdByNameAndBirth(String userName) {
+		System.out.println(userName);
+		return userMapper.getUserIdByNameAndBirth(userName);
 	}
 
 

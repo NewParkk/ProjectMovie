@@ -72,4 +72,10 @@ public class MainHomeController {
 	public String updateUser() {
 		return "userUpdate";
 	}
-}
+	//회원 정보 찾기
+	@GetMapping(value = "/finduser")
+	public String finduser() {
+		return "userFind";
+	}
+	}
+

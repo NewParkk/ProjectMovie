@@ -19,7 +19,8 @@
             <button type="submit">로그인</button>
         </form>
         <div id="signup-link">
-            <a href="/sign">회원가입</a>
+            <a href="/finduser" class = "button">아이디/비밀번호 찾기</a>
+            <a href="/sign" class = "button">회원가입</a>
         </div>
     </div>
     

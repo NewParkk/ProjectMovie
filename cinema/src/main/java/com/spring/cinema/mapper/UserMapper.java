@@ -18,4 +18,6 @@ public interface UserMapper {
 
 	void userDelete(@Param("userId") String userId);
 
+	List<User> getUserIdByNameAndBirth(@Param("userName")String userName);
+
 }

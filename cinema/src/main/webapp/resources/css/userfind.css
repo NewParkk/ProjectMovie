@@ -1,0 +1,57 @@
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fff;
+        }
+		#find-Pw,
+        #find-Id {
+        	margin-right: 10px;
+            width: 500px;
+            height: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+		#find-Pw h2,
+        #find-Id h2 {
+            text-align: center;
+        }
+		#find-Id form,
+		#find-Pw form {
+		    display: flex;
+		    flex-direction: column;
+		    align-items: center;
+		    gap: 10px;
+		    margin-top: -20px;
+		}
+		#find-Pw label, 
+        #find-Id label {
+            font-weight: bold;
+        }
+		
+        #find-Pw input[type="text"]
+        #find-Id input[type="text"]{
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        #find-Pw button, 
+        #find-Id button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #find-Pw button:hover ,
+        #find-Id button:hover {
+            background-color: #0056b3;
+        }
+	
