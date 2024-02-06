@@ -26,4 +26,6 @@ public class User {
 	private String  userGender;
 	 
 	private Boolean userAdmin;
+	
+	private String  userEmail;
 }

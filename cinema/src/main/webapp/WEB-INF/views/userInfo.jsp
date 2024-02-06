@@ -7,6 +7,7 @@
     <title>회원 정보</title>
     <link rel="stylesheet" href="/resources/css/userinfo.css">
     <script src="/resources/js/userinfoslide.js" defer></script> 
+    <script src="/resources/js/userinfotable.js" defer></script> 
 
 </head>
 <body>
@@ -43,26 +44,22 @@
                 <p>아이디:${user.userId}</p>
             </div>
         </div>
-        
-        <div class="box">
-            <h1>잔액 정보</h1>
-            <div class="small-box">
-                <a>dfsgdsfgdsfg</a>
-            </div>
-        </div>
-        <div class="box" id="review-list"> 
-            <h1>리뷰 리스트</h1>
-            <div class="small-box">
-                <a>dfsgdsfgdsfg</a>
-            </div>
-        </div>
-        <div class="box" id="book-list">
-            <h1>예매 목록</h1>
-            <div class="small-box">
-                <a>dfsgdsfgdsfg</a>
-            </div> 
-        </div>
-    </div>
+ 
+    
+ <table id="booking-list">
+  	<caption>예매 내역</caption>
+        <tbody>
+            <!-- 예매 내역은 JavaScript를 통해 추가됩니다 -->
+        </tbody>
+    </table>
+   
+ <table id="review-list"">
+  	<caption>리뷰 리스트</caption>
+        <tbody>
+            <!-- 예매 내역은 JavaScript를 통해 추가됩니다 -->
+        </tbody>
+    </table>
+    
 
     <!-- 모달 창 -->
     <div id="modalContainer" class="modal-container">
@@ -72,8 +69,31 @@
             <button id="cancelDeleteButton" class="modal-button">아니오</button>
         </div>
     </div>
-    <!-- js파일에서 userId를 제대로 전달하기위한 스크립트 -->
+    
+
+     <div class="content">
+        <!-- 여기에 내용 추가 -->
+    </div>
+    <footer>
+       <div class="left-logo">
+            <!-- 왼쪽 로고 -->
+            <img src="/resources/img/로고.png" alt="Left Logo"  style="width: 100px;">
+        </div>
+        <div class="center-info">
+            <!-- 팀 이름 -->
+            <p>NATURAL LIGHTS</p>
+            <!-- 프로젝트 이름 -->
+            <p>CINEMA PROJECT</p>
+            <!-- 프로젝트 기간 -->
+            <p>2024-01-31 ~ YY-MM-DD</p>
+        </div>
+        <div class="right-logo">
+            <!-- 오른쪽 로고 -->
+            <img src="/resources/img/로고.png" alt="Right Logo" style="width: 100px;">
+        </div>
+    </footer>
 <script>
+<!-- js파일에서 userId를 제대로 전달하기위한 스크립트 -->
     var userId = "${sessionScope.userId}";
 </script>
 </body>

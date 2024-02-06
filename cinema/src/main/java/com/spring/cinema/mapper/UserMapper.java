@@ -1,6 +1,5 @@
 package com.spring.cinema.mapper;
 
-import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -18,6 +17,8 @@ public interface UserMapper {
 
 	void userDelete(@Param("userId") String userId);
 
-	List<User> getUserIdByNameAndBirth(@Param("userName")String userName);
+	User userIdByNameBirthEmail(@Param(value = "userName")String userName,  
+			   					@Param(value ="userBirth")Integer userBirth, 
+			   					@Param(value ="userEmail")String userEmail);
 
 }

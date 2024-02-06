@@ -72,7 +72,8 @@ public class UserController {
 								@RequestParam String userName,
 								@RequestParam String userPassword,
 								@RequestParam Integer userBirth,
-								@RequestParam String  userGender) {
+								@RequestParam String  userGender,
+								@RequestParam String  userEmail) {
 		
 		User user = userService.getUserByuserId(userId);
 		String hashedPassword = BCrypt.hashpw(userPassword, BCrypt.gensalt());
@@ -80,6 +81,7 @@ public class UserController {
 		user.setUserPassword(hashedPassword);
 		user.setUserBirth(userBirth);
 		user.setUserGender(userGender);
+		user.setUserEmail(userEmail);		
 		boolean result = userService.updateUserById(user);
 		if (result) {
 			return "redirect:/main";
@@ -88,6 +90,26 @@ public class UserController {
 		}
 	
 	}
+	//회원 상세 정보 페이지
+		@GetMapping(value = "/userinfo/{userId}")
+		public String userInfo(@PathVariable String userId, Model model) {
+			User user = userService.getUserByuserId(userId);
+		     model.addAttribute("user",user);
+			return "userInfo";
+		}
+		
+		//회원 정보 변경 페이지
+		@GetMapping(value = "/userUpdate")
+		public String updateUser() {
+			return "userUpdate";
+		}
+		
+		//회원 정보 찾기
+		@GetMapping(value = "/finduser")
+		public String finduser() {
+			return "userFind";
+		}
+		
 	//회원 정보 삭제
 	@GetMapping(value="/userDelete/{userId}")
 	public String userDelete(@PathVariable String userId) {
@@ -100,36 +122,42 @@ public class UserController {
 		return "redirect:/error";
 		}
 	}
+		
 	//회원 아이디 찾기
 	@PostMapping(value="/findId")
 	public String findId(@RequestParam String userName,
-						@RequestParam Integer userBirth, Model model) {
-		List<User> users= userService.getUserIdByNameAndBirth(userName);
-		for (User user : users) {
-		    if (user.getUserBirth().equals(userBirth)) {
-		    	model.addAttribute("user",user);
-		    	return "showId";
-		    }
+			@RequestParam Integer userBirth,
+			@RequestParam String  userEmail, Model model) {
+		System.out.println(userName);
+		System.out.println(userBirth);
+		System.out.println(userEmail);
+			User user= userService.userIdByNameBirthEmail(userName,userBirth,userEmail);
+			System.out.println(user);
+			if(user == null) {
+				return "redirect:/error";
+			}
+			model.addAttribute("user",user);
+			return "showId";
+		
 		}
-		return "redirect:/error";
-	}
+	
 	//회원 비밀번호 찾기
 	@PostMapping(value="/findPw")
 	public String findPw(@RequestParam String userId ,
 						@RequestParam String userName, 
 						@RequestParam Integer userBirth, 
+						@RequestParam String  userEmail,
 						Model model) {
-		List<User> users= userService.getUserIdByNameAndBirth(userName);
-		for (User user : users) {
+		User user= userService.userIdByNameBirthEmail(userName,userBirth,userEmail);
+		
 		    if (user.getUserBirth().equals(userBirth) && user.getUserId().equals(userId)
 		    		&&user != null) {
 		    	model.addAttribute("user",user);
 		    	return "showPw";
-		    }
 		}
-		return userName;
+		return "redirect:/error";
 	}
-	
+	//회원 비밀번호 변경
 	@PostMapping(value="/chagePw/{userId}")
 	public String findPw(@PathVariable String userId,
 						@RequestParam String userPassword) {
@@ -144,4 +172,15 @@ public class UserController {
 		}
 
     }
+	//예약 페이지
+		@GetMapping(value = "/book")
+		public String movieBook()  {
+			return "booking";
+		}
+		
+		//영화 등록 페이지
+		@GetMapping(value = "/registration")
+		public String movieRegistration()  {
+			return "registrationMv";
+		}
 	}

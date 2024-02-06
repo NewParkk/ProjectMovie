@@ -8,6 +8,8 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
+
+
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
 
@@ -27,13 +29,18 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<context:component-scan
-		base-package="com.spring.postme" />
-
-
-	
 	<context:component-scan base-package="com.spring.cinema" />
 	
-	
-	
+	<interceptors>
+		    <interceptor> 
+		        <mapping path="/userUpdate/**"/> 
+		        <mapping path="/chagePw/**"/> 
+		        <mapping path="/userinfo/**"/> 
+		        <mapping path="/book"/> 
+		        
+		        <exclude-mapping path="/main"/> 
+		        <beans:bean id="firstInterceptor" class="com.spring.cinema.grobal.interceptor.Interceptor"/> 
+		    </interceptor>
+		</interceptors>
+		
 </beans:beans>

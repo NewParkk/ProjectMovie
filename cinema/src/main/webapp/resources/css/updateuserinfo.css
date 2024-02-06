@@ -1,4 +1,4 @@
- 		body {
+ 		 body {
             display: flex;
             justify-content: center;
             align-items: flex-start;
@@ -10,7 +10,7 @@
         #update-form {
         	margin-top: 150px;
             width: 600px;
-            height: 650px;
+            height: 720px;
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;

@@ -12,7 +12,8 @@
 				user_password,
 				user_birth,
 				user_gender,
-				user_admin 
+				user_admin, 
+				user_email
 				FROM user
 				 WHERE user_id = #{userId}
 	</select>
@@ -20,10 +21,10 @@
 	<!-- 사용자 정보 추가 -->
 		<insert id="insertUser"
 		parameterType="com.spring.cinema.model.User">
-		INSERT INTO user (user_id, user_name, user_password, user_birth, user_gender
+		INSERT INTO user (user_id, user_name, user_password, user_birth, user_gender,user_email
 		)
 		VALUES (#{userId}, #{userName}, #{userPassword},
-		#{userBirth},#{userGender}
+		#{userBirth},#{userGender},#{userEmail}
 		)
 	</insert>
 	
@@ -32,7 +33,8 @@
         UPDATE user SET user_name = #{userName}, 
         				user_password = #{userPassword}, 
         				user_birth = #{userBirth}, 
-        				user_gender = #{userGender}
+        				user_gender = #{userGender},
+        				user_email = #{userEmail}
         WHERE user_id = #{userId}
     </update>
    <!-- 사용자 정보 삭제 -->
@@ -43,10 +45,10 @@
     
     </delete>
     <!-- 사용자 아이디 찾기 -->
-    	<select id="getUserIdByNameAndBirth" parameterType="string" resultType="User">
+	 <select id="userIdByNameBirthEmail"  resultType="User">
 		SELECT *
 		FROM user
-		WHERE user_name = #{userName} 
+		WHERE user_name = #{userName} AND user_email = #{userEmail} AND user_birth = #{userBirth} 
+	</select> 
 
-	</select>
 	</mapper>

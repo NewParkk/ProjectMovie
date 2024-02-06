@@ -1,8 +1,8 @@
-        body {
+       body {
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            height: 950px;
+            height: 1000px;
             margin: 0;
             background-color: #fff;
         }
@@ -10,7 +10,7 @@
         #signup-form {
         	margin-top:120px;
             width: 600px;
-            height: 700px;
+            height: 800px;
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;

@@ -17,6 +17,8 @@
             <input type="text" id="userName" name="userName" required>
             <label for="userBirth">생일:</label>
             <input type="text" id="userBirth" name="userBirth" required>
+            <label for="userEmail">이메일:</label>
+            <input type="text" id="userEmail" name="userEmail" required>
             <button type="submit">아이디 찾기</button>
         </form>
         </div>
@@ -29,6 +31,8 @@
             <input type="text" id="userName" name="userName" required>
             <label for="userBirth">생일:</label>
             <input type="text" id="userBirth" name="userBirth" required>
+            <label for="userEmail">이메일:</label>
+            <input type="text" id="userEmail" name="userEmail" required>
             <button type="submit">비밀 번호 찾기</button>
         </form>
     </div>

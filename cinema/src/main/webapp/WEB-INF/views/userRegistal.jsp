@@ -24,6 +24,8 @@
             <input type="text" id="userBirth" name="userBirth" required>
             <label for="userGender">성별:</label>
             <input type="text" id="userGender" name="userGender" required>
+            <label for="userEmail">이메일:</label>
+            <input type="text" id="userEmail" name="userEmail" required>
             <button type="submit">회원가입</button>
         </form>
 

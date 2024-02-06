@@ -1,16 +1,15 @@
 package com.spring.cinema.service.user;
 
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.cinema.mapper.UserMapper;
 import com.spring.cinema.model.User;
+import com.spring.cinema.service.impl.UserServiceImpl;
 
 @Service
-public class UserService {
+public class UserService implements UserServiceImpl{
 	
 	private final UserMapper userMapper;
 
@@ -61,10 +60,9 @@ public class UserService {
 	}
 
 
-
-	public List<User> getUserIdByNameAndBirth(String userName) {
-		System.out.println(userName);
-		return userMapper.getUserIdByNameAndBirth(userName);
+	public User userIdByNameBirthEmail(String userName, Integer userBirth, String userEmail) {
+		
+		return userMapper.userIdByNameBirthEmail(userName,userBirth,userEmail);
 	}
 
 
