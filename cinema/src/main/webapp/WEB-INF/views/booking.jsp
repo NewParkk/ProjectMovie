@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>예매 페이지</title>
     <%@ include file="header.jsp" %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
         body {
             margin: 0;
@@ -69,60 +71,70 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="quadrant category" id="movieQuadrant">
-        	<div>
-	            <h2 class="category">영화</h2>
-        	</div>
-        	<div class="list_view">
-            	<ul class="movie-list" id="movieList">
-            		<c:forEach items="${movies}" var="movie">
-                 		<p class="" onclick="infoList(this, ${movie.movieId})">${movie.movieName}</p>
-            		</c:forEach>
-            	</ul>
-        	</div>
-        </div>
-
-		<div class="quadrant category" id="theaterQuadrant">
-			<div>
-				<h2 class="category">극장</h2>
+	<div class="outer-container">
+	    <div class="container">
+	        <div class="quadrant category" id="movieQuadrant">
+	        	<div>
+		            <h2 class="category">영화</h2>
+	        	</div>
+	        	<div class="list_view">
+	            	<ul class="movie-list" id="movieList">
+	            		<c:forEach items="${movies}" var="movie">
+	                 		<p class="" onclick="infoList(this, ${movie.movieId})">${movie.movieName}</p>
+	            		</c:forEach>
+	            	</ul>
+	        	</div>
+	        </div>
+	
+			<div class="quadrant category" id="theaterQuadrant">
+				<div>
+					<h2 class="category">극장</h2>
+				</div>
+				<div>    
+					<ul class="theater-list" id="theaterList">
+					</ul>
+				</div>	
 			</div>
-			<div>    
-				<ul class="theater-list" id="theaterList">
-				</ul>
-			</div>	
-		</div>
-
-        <div class="quadrant category" id="dateQuadrant">
-        	<div>
-            	<h2 class="category">날짜</h2>
-            </div>
-            <div>
-				<ul class="date-list" id="dateList">
-				</ul>
-			</div>
-        </div>
-
-        <div class="quadrant category" id="timeQuadrant">
-			<div>
-				<h2 class="category">시간</h2>
-			</div>
-			<div>	
-				<ul class="time-list" id="timeList">
-                <!-- JavaScript로 동적으로 채워질 부분 -->
-				</ul>
-			</div>	
-        </div>
+	
+	        <div class="quadrant category" id="dateQuadrant">
+	        	<div>
+	            	<h2 class="category">날짜</h2>
+	            </div>
+	            <div>
+					<ul class="date-list" id="dateList">
+					</ul>
+				</div>
+	        </div>
+	
+	        <div class="quadrant category" id="timeQuadrant">
+				<div>
+					<h2 class="category">시간</h2>
+				</div>
+				<div>	
+					<ul class="time-list" id="timeList">
+	                <!-- JavaScript로 동적으로 채워질 부분 -->
+					</ul>
+				</div>	
+	        </div>
+	    </div>
+    	<p style="text-align: right;">
+    		<button onclick="insertBooking()" style="margin-right: 10px" type="button" class="btn btn-primary">예매</button>
+    	</p>
     </div>
-
+	<input type="hidden" id="movieId" value="">
+	<input type="hidden" id="theaterId" value="">
+	<input type="hidden" id="movieInfoDate" value="">
+	<input type="hidden" id="movieInfoId" value="">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script>
+    // 시간이 선택된 상태를 구분짓기위한 boolean
+    var lastFlag = false;
     // 주석
-    // MovieBookingController에서 보낸 movieId, theaterId값을 받아 받은 파라미터의 갯수로
+    // MovieBookingController에서 보낸 movieId, theaterId, movieInfoDate값을 받아 받은 파라미터의 갯수로
     // mappingURL을 판단하여 각각 해당 컨트롤러로 보냄
     // 그 후 controller에서 값을 받아 출력.
-    function infoList(obj, movieId, theaterId, dateId){
+    function infoList(obj, movieId, theaterId, movieInfoDate){
     	var data = new Object();
     	// 주석 보낼 url
     	var url = "";
@@ -130,9 +142,11 @@
     	var listFlag = "";
     	// 주석 조회되는 값 없을시 출력할 Str
     	var listStr = "";
-    	
+    	// infoList가 어디서 실행되든 false유지
+    	lastFlag = false;
     	// 주석 time을 가져오기 위함
-    	if(theaterId && dateId){
+    	if(theaterId && movieInfoDate){
+    		$("#movieInfoDate").val(movieInfoDate)
     		// 주석 active활성화시 다른 활성화되어있던 active제거
 	    	$(".date-list p").removeClass("active");
 	    	// 주석 active활성화
@@ -149,6 +163,7 @@
     	}
     	// 주석 date를 가져오기위함
     	else if(theaterId){
+    		$("#theaterId").val(theaterId)
 	    	$(".theater-list p").removeClass("active");
 	    	$(obj).addClass("active");
 	    	data = {
@@ -161,9 +176,9 @@
     	}
     	// 주석 theater가져오기위함
     	else {
+    		$("#movieId").val(movieId)
 	    	$(".movie-list p").removeClass("active");
 	    	$(obj).addClass("active");
-	    	url = "/book/theaterList";
 	    	data = {
 	    		"movieId" : movieId
 	    	}
@@ -188,8 +203,10 @@
   				// 주석 ajax로 데이터를 보내고 controller에서 받은 list가 존재할때 reesultCode를 S000으로 보냄
     			if(result.resultCode == "S000"){
 	    			switch(listFlag){
-	    			// 주석 극장리스트 출력 
+	    			// 주석 극장리스트 출력
 	    			case "theaterList" :
+	    				$("#dateList").empty();
+	    				$("#timeList").empty();
 	    				// 주석 받아온 list의 속성값에 접근
 	   					for(var i in result.theaterList){
 	   					// 주석  list안의 요소를 하나씩 추가하면서 각 요소에 onclick이벤트 추가
@@ -198,14 +215,15 @@
 	   					break;
 	   				// 주석 날짜리스트 출력
 	    			case "dateList" : 
+	    				$("#timeList").empty();
 	    				for(var i in result.dateList){
-	    					$("#"+listFlag).append("<p onclick='infoList(this," + movieId + "," + theaterId + ","+ result.dateList[i].dateId + ")'>" + result.dateList[i].movieInfoDate + "</p>")
+	    					$("#"+listFlag).append("<p onclick='infoList(this," + movieId + "," + theaterId + ","+ result.dateList[i].movieInfoDate + ")'>" + result.dateList[i].movieInfoDate + "</p>")
 	    				}
 	    				break;
     				// 주석 시간리스트 출력
-	    			case "timeList" : 
+	    			case "timeList" :
 	    				for(var i in result.timeList){
-	    					$("#"+listFlag).append("<p onclick='saveBooking()'>" + result.timeList[i].timeStr + "</p>")
+	    					$("#"+listFlag).append("<p id='"+ result.timeList[i].movieInfoId +"' onclick='saveBooking(this)'>" + result.timeList[i].movieInfoTime + "</p>")
 	    				}
 	    				break;
     				// 다른 값이 인입되면 예외처리로 아무런 행동도 하지 않고 종료
@@ -224,16 +242,39 @@
     	
     }
     
-    function saveBooking(){
+    function saveBooking(obj){
+    	// 선택한 obj의 id를 가져옴
+    	$("#movieInfoTime").val(obj.id);
     	// 선택한 영화, 극장, 날짜, 시간 데이터 저장
+    	$("#timeList p").removeClass("active");
+    	$(obj).addClass("active");
+    	lastFlag = true;
     }
     
     function insertBooking(){
-    	if(confirm("예매를 진행하시겠습니까?")){
-    		// 네
+	    // 시간이 선택된 상태이면
+    	if(lastFlag){
+	    	if(confirm("예매를 진행하시겠습니까?")){
+		    	var	data = {
+			    	"movieInfoId" : $("#movieInfoId").val()
+			    }
+	    		$.ajax({
+	        		type : "POST",
+	        		url  : "/book/savebooking",
+	        		data : JSON.stringify(data),
+	        		dataType : "JSON",
+	        		contentType : "application/json; charset=UTF-8",
+	        		success : function(result){
+	        			if(confirm("예매가 완료되었습니다. 마이페이지로 이동하겠습니까?")){
+	        				location.href="/mypage/book";
+	        			}else {
+	        				location.href ="/main";
+	        			}
+	        		}
+	    		})
+    		}
     	}
     }
-    
     </script>
 </body>
 </html>

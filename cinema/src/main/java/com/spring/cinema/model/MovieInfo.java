@@ -12,7 +12,7 @@ public class MovieInfo {
 	private String movieInfoDate;
 	private String movieInfoTime;
 	private int movieId;
-	
+	private String userId;
 	 
 	
 	

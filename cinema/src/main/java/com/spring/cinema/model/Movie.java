@@ -15,7 +15,7 @@ public class Movie {
 	private Date movieDate;
 	
 	@Builder
-	public Movie(int movieId, String movieName, String movieStory, Date movieDate) {
+	public Movie(int movieId, String movieName, String movieStory, Date movieDate, int theaterId) {
 		this.movieId = movieId;
 		this.movieName = movieName;
 		this.movieStory = movieStory;

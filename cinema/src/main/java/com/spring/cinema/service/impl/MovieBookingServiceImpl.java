@@ -38,6 +38,24 @@ public class MovieBookingServiceImpl implements MovieBookingService{
 	public List<MovieInfo> getdateBymovieId(int movieId) {
 		return movieBookingMapper.getdateBymovieId(movieId);
 	}
+
+
+	@Override
+	public List<MovieInfo> gettimeBymovieId(int movieId) {
+		return movieBookingMapper.gettimeBymovieId(movieId);
+	}
+
+
+	@Override
+	public String savebooking(MovieInfo bookInfo) {
+		String resultCode = "F000";
+		int result = movieBookingMapper.savebooking(bookInfo);
+		if (result > 0) {
+			resultCode = "S000";
+		}
+		
+		return resultCode;
+	}
 	
 	
 	

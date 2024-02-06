@@ -1,6 +1,5 @@
 package com.spring.cinema.controller.user;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.cinema.model.Movie;
+import com.spring.cinema.model.MovieBooking;
 import com.spring.cinema.model.MovieInfo;
 import com.spring.cinema.model.Theater;
 import com.spring.cinema.service.user.MovieBookingService;
@@ -36,8 +36,9 @@ public class MovieBookingController {
 		List<Movie> movies = movieBookingService.getAllMovieNameList();
 		
 		model.addAttribute("movies", movies);
-		System.out.println(Arrays.asList(movies).toString());
-		System.out.println(movies.toString());
+		
+//		System.out.println(Arrays.asList(movies).toString());
+//		System.out.println(movies.toString());
 		return "booking";
 	}
 	
@@ -46,7 +47,7 @@ public class MovieBookingController {
 	public ModelAndView theaterInfo(@RequestBody Movie movie) {
 		
 		List<Theater> theaterList = movieBookingService.getTheaterBymovieId(movie.getMovieId());
-		System.out.println(theaterList.toString());
+//		System.out.println(theaterList.toString());
 		ModelAndView mv = new ModelAndView("jsonView");
 		String resultCode = "F000";
 		if (theaterList.size() > 0) {
@@ -78,6 +79,37 @@ public class MovieBookingController {
 	}
 	
 	
+	@PostMapping(value = "/book/timeList")
+	@ResponseBody
+	public ModelAndView timeInfo(@RequestBody MovieInfo movieInfo) {
+		
+		List<MovieInfo> timeList = movieBookingService.gettimeBymovieId(movieInfo.getMovieId());
+		
+		System.out.println(timeList.toString());
+		ModelAndView mv = new ModelAndView("jsonView");
+		String resultCode = "F000";
+		if (timeList.size() > 0) {
+			resultCode = "S000"; 
+		}
+		
+		mv.addObject("timeList", timeList);
+		mv.addObject("resultCode", resultCode);
+		return mv;
+	}
+	
+	@PostMapping(value = "/book/savebooking")
+	@ResponseBody
+	public ModelAndView savebooking(@RequestBody MovieInfo bookInfo, HttpSession session) {
+		
+		String resultCode = "F000";
+		session.getAttribute("userId");
+		bookInfo.setUserId((String) session.getAttribute("userId"));
+		resultCode = movieBookingService.savebooking(bookInfo);
+		ModelAndView mv = new ModelAndView("jsonView");
+		
+		mv.addObject("resultCode", resultCode);
+		return mv;
+	}
 	
 	
 }

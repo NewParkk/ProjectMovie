@@ -26,16 +26,27 @@
 		FROM theater
 		WHERE movie_id = #{movieId}
 	</select>
-	
-	
-	
+		
 	
 	<select id="getdateBymovieId" parameterType="_int" resultType="com.spring.cinema.model.MovieInfo">
-		SELECT distinct theater_id AS theatherId,
+		SELECT distinct theater_id AS theaterId,
 				date_format(movie_info_date, '%Y-%m-%d') AS movieInfoDate,
 				movie_id AS movieId
 		FROM movie_info
 		WHERE movie_id = #{movieId}
 	</select>
-
+	
+	<select id="gettimeBymovieId" parameterType="_int" resultType="com.spring.cinema.model.MovieInfo">
+		SELECT distinct theater_id AS theaterId,
+				date_format(movie_info_time, '%H:%i') AS movieInfoTime,
+				movie_id AS movieId
+		FROM movie_info
+		WHERE movie_id = #{movieId}
+	</select>
+	
+	<insert id="savebooking" parameterType="com.spring.cinema.model.MovieBooking">
+		INSERT INTO movie_booking (user_id, movie_info_id)
+		VALUES (#{userId},#{movieInfoId})
+	</insert>
+	
 </mapper>

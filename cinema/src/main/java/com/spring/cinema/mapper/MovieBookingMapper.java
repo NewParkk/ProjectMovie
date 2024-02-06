@@ -16,6 +16,10 @@ public interface MovieBookingMapper {
 	List<Theater> getTheaterBymovieId(int movieId);
 
 	List<MovieInfo> getdateBymovieId(int movieId);
+
+	List<MovieInfo> gettimeBymovieId(int movieId);
+
+	int savebooking(MovieInfo bookInfo);
 	
 	
 }
