@@ -1,12 +1,71 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>영화 정보 추가</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #main {
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        input {
+            font-size: 14px;
+            padding: 8px;
+            width: 300px;
+        }
+
+        .Btn {
+            font-size: 16px;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
     <%@ include file="header.jsp" %>
+
+    <!-- main -->
+    <main id="main">
+        <h3>영화 정보 추가</h3>
+
+        <!-- registration form area -->
+        <div id="registration-form" class="container">
+            <form action="/InsertMoive" method="post">
+                <div class="form-group">
+                    <label for="movieName">영화 제목</label>
+                    <input type="text" id="movieName" name="movieName" required>
+                </div>
+                <div class="form-group">
+                    <label for="movieDate">개봉일</label>
+                    <input type="date" id="movieDate" name="movieDate" required>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="추가 완료" class="Btn">
+                </div>
+            </form>
+        </div>
+    </main>
 </body>
 </html>
