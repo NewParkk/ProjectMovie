@@ -10,15 +10,21 @@
 <script src="/resources/js/chatbot.js" defer></script> 
 <div class="header-container">
 <header>
+	<%
+		response.setHeader("Pragma", "no-cache");
+	response.setHeader("Cache-Control", "no-cache");
+	response.setHeader("Cache-Control", "no-store");
+	response.setDateHeader("Expires", 0L);
+	%>
     <div class="logo">
-        <a href="main"><img src="/resources/img/로고.png" style="width:100px;"></a>
+        <a href="main"><img src="/resources/img/logo.png" style="width:100px;"></a>
     </div>
     <label for="toggle">&#8801;</label>
 
         <div class="nav_menu">
         	<div class="option">
-           <a href="/movielist">영화</a>
-           <a href="/review">극장</a>
+           <a href="/movies">영화</a>
+           <a href="/theather">극장</a>
             <a href="/book">예매</a>
             <a href="/registration">영화 등록</a>
             </div>
@@ -68,3 +74,13 @@
             <h1>Add What you want here.</h1>
         </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleButton = document.getElementById('toggle');
+    const navMenu = document.querySelector('.nav_menu');
+
+    toggleButton.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+    });
+});
+</script>

@@ -6,6 +6,9 @@
 	</settings>
 	<typeAliases>
 		<typeAlias type="com.spring.cinema.model.User" alias="User"/>
+		<typeAlias type="com.spring.cinema.model.Book" alias="Book"/>
+		<typeAlias type="com.spring.cinema.model.Movie" alias="Movie"/>
+		<typeAlias type="com.spring.cinema.model.Review" alias="Review"/>
 	</typeAliases>
 
 </configuration>

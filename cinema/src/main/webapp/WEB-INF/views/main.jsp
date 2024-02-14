@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Movie Recommendation & Booking</title>
+    <title>Movie Recommendation Booking</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
@@ -15,18 +15,18 @@
 
 <div id="slideshow-container" >
    
-  <div class="slide">
-      <img src="resources/img/시민덕희.jpg" alt="Image 1">
-      <img src="resources/img/노량.jpg" alt="Image 2">
-      <img src="resources/img/괴물.jpg" alt="Image 3">
-      <img src="resources/img/도그맨.jpg" alt="Image 4">
-      <img src="resources/img/짱구는 못말려.jpg" alt="Image 5">
-      <img src="resources/img/인투더월드.jpg" alt="Image 6">
-      <img src="resources/img/위시.jpg" alt="Image 7">
-      <img src="resources/img/외계인2부.jpg" alt="Image 8">
-      <img src="resources/img/상견니.jpg" alt="Image 9">
-</div>
-
+ <div class="slide">
+      <img src="resources/img/monster.jpg" alt="Image 1">
+      <img src="resources/img/yellow.jpg" alt="Image 2">
+      <img src="resources/img/deadman.png" alt="Image 3">
+      <img src="resources/img/dogman.jpg" alt="Image 4">
+      <img src="resources/img/springofseoul.jpg" alt="Image 5">
+      <img src="resources/img/intoworld.jpg" alt="Image 6">
+      <img src="resources/img/wish.jpg" alt="Image 7">
+      <img src="resources/img/alien2.jpg" alt="Image 8">
+      <img src="resources/img/helloni.jpg" alt="Image 9">
+</div> 
+ 
 </div>
 
 <div class="mag">
@@ -37,7 +37,7 @@
     <li>
       <section id="movie-recommendation">
         <a href="#" class="movie-card">
-          <div class="movie-image" style="background-image: url('resources/img/외계인2부.jpg');"></div>
+          <div class="movie-image" style="background-image: url(resources/img/monster.jpg);"></div>
           <div class="movie-details">
             <h3>외계+인2부</h3>
             <p>장르</p>
@@ -49,7 +49,7 @@
     <li>
       <section id="movie-recommendation">
         <a href="#" class="movie-card">
-          <div class="movie-image" style="background-image: url('resources/img/괴물.jpg');"></div>
+          <div class="movie-image" style="background-image: url(resources/img/yellow.jpg);"></div>
           <div class="movie-details">
             <h3>Movie 1</h3>
             <p>장르</p>
@@ -62,7 +62,7 @@
       <section id="movie-recommendation">
         <div class="movie-list">
           <a href="#" class="movie-card">
-            <div class="movie-image" style="background-image: url('resources/img/짱구는 못말려.jpg');"></div>
+            <div class="movie-image" style="background-image: url(resources/img/deadman.png);"></div>
             <div class="movie-details">
               <h3>Movie 1</h3>
               <p>장르</p>
@@ -76,7 +76,7 @@
       <section id="movie-recommendation">
         <div class="movie-list">
           <a href="#" class="movie-card">
-            <div class="movie-image" style="background-image: url('resources/img/도그맨.jpg');"></div>
+            <div class="movie-image" style="background-image: url(resources/img/intoworld.jpg);"></div>
             <div class="movie-details">
               <h3>Movie 1</h3>
               <p>장르</p>
@@ -88,26 +88,6 @@
     </li>
   </ul>
 </div>
-<!-- <section id="movie-booking">
-    <h2>Movie Booking</h2>
-    <div class="booking-form">
-        <form>
-            <label for="selectedMovie">Select a Movie:</label>
-            <select id="selectedMovie" name="selectedMovie" required>
-                <option value="movie1">Movie 1</option>
-            
-            </select>
-
-            <label for="bookingDate">Select Date:</label>
-            <input type="date" id="bookingDate" name="bookingDate" required>
-
-            <label for="numTickets">Number of Tickets:</label>
-            <input type="number" id="numTickets" name="numTickets" min="1" required>
-
-            <button type="submit">Book Now</button>
-        </form>
-    </div>
-</section> -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- Slick Slider JS -->

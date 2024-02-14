@@ -4,6 +4,7 @@ package com.spring.cinema.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.spring.cinema.model.Book;
 import com.spring.cinema.model.User;
 
 @Mapper

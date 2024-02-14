@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
- <%@ include file="header.jsp" %>
+<h2> 400: Bad Request 요청을 수정하고 다시 제출해주세요.</h2>
 </body>
 </html>

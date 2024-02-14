@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="/resources/css/showIdPw.css">
 </head>
 <body>
+
   <%@ include file="header.jsp" %>
 <div class="container">
         <div class="user-box">

@@ -1,5 +1,26 @@
 package com.spring.cinema.model;
 
-public class Review {
+import java.sql.Timestamp;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Review {
+	
+	
+	private Integer reviewId;
+	
+	private String content;
+	
+	private Timestamp createDate;
+
+	private Timestamp modifyDate;
+	
+	private String  userId;
+	 
+	private String movieName;
+	
 }

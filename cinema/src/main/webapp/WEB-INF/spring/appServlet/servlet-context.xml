@@ -20,7 +20,6 @@
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/css/**" location="/resources/css/" /> 
-
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
 	<beans:bean
@@ -40,6 +39,15 @@
 		        
 		        <exclude-mapping path="/main"/> 
 		        <beans:bean id="firstInterceptor" class="com.spring.cinema.grobal.interceptor.Interceptor"/> 
+		    </interceptor>
+
+		
+		
+			<interceptor> 
+		        <mapping path="/registration/**"/> 
+		        <exclude-mapping path="/login"/> 
+		        <exclude-mapping path="/main"/> 
+		        <beans:bean id="AdminInterceptor" class="com.spring.cinema.grobal.interceptor.AdminInterceptor"/> 
 		    </interceptor>
 		</interceptors>
 		

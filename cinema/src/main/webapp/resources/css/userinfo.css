@@ -163,7 +163,7 @@
         	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         	font-size:20px;
         	font-weight: bold;
-            margin-bottom: 10px; /* ����� ���̺� ���� ���� ���� */
+            margin-bottom: 10px; /* ����� ���̺� ���� ���� ���� */
         }
     
 
@@ -186,3 +186,65 @@
         footer .center-info {
             text-align: center;
         }
+        .infobox {
+			flex-wrap: wrap; 
+            width: 700px;
+            height: 100px;
+            text-align: center;
+            border: 2px solid black;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .left-side {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .right-side {
+            flex: 1;
+            text-align: right;
+        }
+        
+        /* 모달 스타일 */
+		.modal {
+		  display: none;
+		  position: fixed;
+		  z-index: 1;
+		  left: 0;
+		  top: 0;
+		  width: 30%;
+		  height: 30%;
+		  margin: auto;
+		  overflow: auto;
+		
+		  /* 중앙 정렬을 위한 수정 */
+		  transform: translate(-50%, -50%);
+		  top: 50%;
+		  left: 50%;
+		}
+		/* 모달 내용 스타일 */
+		.modal-text {
+		  background-color: #fefefe;
+		  padding: 20px;
+		  border: 1px solid #888;
+		  width: 80%;
+		  margin: 0 auto; /* 가운데 정렬을 위한 마진 설정 */
+		}
+		
+		/* 모달 닫기 버튼 스타일 */
+		.close {
+		  color: #aaa;
+		  float: right;
+		  font-size: 28px;
+		  font-weight: bold;
+		}
+		
+		.close:hover,
+		.close:focus {
+		  color: black;
+		  text-decoration: none;
+		  cursor: pointer;
+		}

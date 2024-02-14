@@ -18,12 +18,12 @@ public class MainHomeController {
 	//영화 리스트페이지
 	@GetMapping(value = "/movielist")
 	public String movieList()  {
-		return "movielist";
+		return "test";
 	}
 	//리뷰 페이지
-	@GetMapping(value = "/review")
+	@GetMapping(value = "/theather")
 	public String movieReview()  {
-		return "review";
+		return "theather";
 	}
 
 	//회원가입 홈페이지

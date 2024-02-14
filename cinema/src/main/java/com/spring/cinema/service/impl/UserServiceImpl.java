@@ -13,4 +13,5 @@ public interface UserServiceImpl {
 	boolean userDelete(String userId);
 	
 	User userIdByNameBirthEmail(String userName, Integer userBirth, String userEmail);
+	
 }

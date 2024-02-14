@@ -2,5 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.spring.cinema.mapper.reviewMapper">
+<mapper namespace="com.spring.cinema.mapper.ReviewMapper">
+
+
+	<select id="getreviewById" parameterType="string" resultType="Review">
+				SELECT *
+				FROM review
+				 WHERE user_id = #{userId}
+	</select>
 </mapper>

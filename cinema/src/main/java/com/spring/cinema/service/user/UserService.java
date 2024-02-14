@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.cinema.mapper.UserMapper;
+import com.spring.cinema.model.Book;
 import com.spring.cinema.model.User;
 import com.spring.cinema.service.impl.UserServiceImpl;
 
@@ -64,6 +65,9 @@ public class UserService implements UserServiceImpl{
 		
 		return userMapper.userIdByNameBirthEmail(userName,userBirth,userEmail);
 	}
+
+
+
 
 
 }

@@ -1,8 +1,8 @@
 package com.spring.cinema.controller.user;
 
-import java.util.HashMap;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,7 +15,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.spring.cinema.mapper.ReviewMapper;
+import com.spring.cinema.model.Book;
+import com.spring.cinema.model.Movie;
+import com.spring.cinema.model.Review;
 import com.spring.cinema.model.User;
+import com.spring.cinema.service.user.BookService;
+import com.spring.cinema.service.user.MovieInfoService;
+import com.spring.cinema.service.user.MovieService;
+import com.spring.cinema.service.user.ReviewService;
 import com.spring.cinema.service.user.UserService;
 
 
@@ -23,11 +32,24 @@ import com.spring.cinema.service.user.UserService;
 public class UserController {
 	
 	private final UserService userService;
+	private final BookService bookService;
+	private final MovieService movieService;
+	private final ReviewService reviewService;
+	
 	//서버 매핑
 	@Autowired
-	public UserController(UserService userService) {
+	public UserController(UserService userService, 
+							BookService bookService,
+							MovieService movieService,
+							ReviewService reviewService) {
 		this.userService = userService;
+		this.bookService = bookService;
+		this.movieService = movieService;
+		this.reviewService = reviewService;
+		
+
 	}
+	
 	//로그인
 	@PostMapping("/log")
 	public String login(@RequestParam("userId") String userId, @RequestParam("userPassword") String userPassword,
@@ -37,8 +59,9 @@ public class UserController {
 			
 			session.setAttribute("userId", user.getUserId());
 			session.setAttribute("userAdmin", user.getUserAdmin());
+			System.out.println(user.getUserAdmin());
 			if (user.getUserAdmin()) {
-				return "redirect:/admin/dashboard";
+				return "redirect:/main";
 			} else {
 				return "redirect:/main";
 			}
@@ -46,6 +69,7 @@ public class UserController {
 			return "redirect:/login?error=true";
 		}
 	}
+	
 	//로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
@@ -66,6 +90,7 @@ public class UserController {
 			return "redirect:/register?error=true";
 		}
 	}
+	
 	//회원 정보 변경
 	@PostMapping(value= "/userUpdate/{userId}")
 	public String userUpdate(@PathVariable String userId,
@@ -90,13 +115,22 @@ public class UserController {
 		}
 	
 	}
+	
 	//회원 상세 정보 페이지
 		@GetMapping(value = "/userinfo/{userId}")
 		public String userInfo(@PathVariable String userId, Model model) {
+			//유저 정보 받기
 			User user = userService.getUserByuserId(userId);
-		     model.addAttribute("user",user);
+			//예약 정보 받기
+			ArrayList<Book> booking = bookService.getBookByuserId(userId);
+			ArrayList<Review> reviewsList = reviewService.getreviewById(userId);
+			model.addAttribute("user", user);
+			//예약 목록에 영화 정보 리스트를 어떻게 출력할것인가
+			model.addAttribute("booking",booking);
+			model.addAttribute("reviewsList",reviewsList);
+			
 			return "userInfo";
-		}
+			}
 		
 		//회원 정보 변경 페이지
 		@GetMapping(value = "/userUpdate")
@@ -113,7 +147,7 @@ public class UserController {
 	//회원 정보 삭제
 	@GetMapping(value="/userDelete/{userId}")
 	public String userDelete(@PathVariable String userId) {
-		System.out.println(userId);
+
 		boolean result = userService.userDelete(userId);
 		if(result) {
 			System.out.println(result);
@@ -128,11 +162,8 @@ public class UserController {
 	public String findId(@RequestParam String userName,
 			@RequestParam Integer userBirth,
 			@RequestParam String  userEmail, Model model) {
-		System.out.println(userName);
-		System.out.println(userBirth);
-		System.out.println(userEmail);
+
 			User user= userService.userIdByNameBirthEmail(userName,userBirth,userEmail);
-			System.out.println(user);
 			if(user == null) {
 				return "redirect:/error";
 			}
@@ -156,23 +187,23 @@ public class UserController {
 		    	return "showPw";
 		}
 		return "redirect:/error";
-	}
-	//회원 비밀번호 변경
-	@PostMapping(value="/chagePw/{userId}")
-	public String findPw(@PathVariable String userId,
-						@RequestParam String userPassword) {
-		User user = userService.getUserByuserId(userId);
-		String hashedPassword = BCrypt.hashpw(userPassword, BCrypt.gensalt());
-    	user.setUserPassword(hashedPassword);
-    	boolean result = userService.updateUserById(user);
-		if (result) {
-			return "redirect:/login";
-		} else {
-			return "redirect:/error";
 		}
-
-    }
-	//예약 페이지
+		//회원 비밀번호 변경
+		@PostMapping(value="/chagePw/{userId}")
+		public String findPw(@PathVariable String userId,
+							@RequestParam String userPassword) {
+			User user = userService.getUserByuserId(userId);
+			String hashedPassword = BCrypt.hashpw(userPassword, BCrypt.gensalt());
+	    	user.setUserPassword(hashedPassword);
+	    	boolean result = userService.updateUserById(user);
+			if (result) {
+				return "redirect:/login";
+			} else {
+				return "redirect:/error";
+			}
+	
+	    }
+		//예약 페이지
 		@GetMapping(value = "/book")
 		public String movieBook()  {
 			return "booking";
