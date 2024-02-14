@@ -18,7 +18,7 @@
         <div class="nav_menu">
         	<div class="option">
            <a href="/movielist">영화</a>
-           <a href="/review">극장</a>
+           <a href="/theaters">극장</a>
             <a href="/book">예매</a>
             <a href="/registration">영화 등록</a>
             </div>
