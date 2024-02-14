@@ -19,7 +19,7 @@
         }
 
         .container {
-        	margin-top: 100px;
+        	margin-top: 300px;
             display: flex;
             flex-direction: row;
             width: 950px;
@@ -39,7 +39,22 @@
             font-size: 18px;
             margin-bottom: 10px;
         }
-
+		
+		.select-field {
+			width: 100%;
+			height: 100px;
+			margin-bottom: 20px;
+		}
+		
+		.info-movie,
+		.info-theater,
+		.info-date,
+		.info-time {
+			width: 210px;
+			height: 90px;
+			float: left;
+		}
+		
         .movie-list,
         .theater-list,
         .date-list,
@@ -112,14 +127,39 @@
 				</div>
 				<div>	
 					<ul class="time-list" id="timeList">
-	                <!-- JavaScript로 동적으로 채워질 부분 -->
 					</ul>
 				</div>	
 	        </div>
 	    </div>
-    	<p style="text-align: right;">
-    		<button onclick="insertBooking()" style="margin-right: 10px" type="button" class="btn btn-primary">예매</button>
-    	</p>
+	    <div class="select-field">
+	    	<div class="info-movie">
+	    		<span class="movie_poster">
+	    		<!-- <img src=""> -->
+	    		</span>
+	    		<div class="selected movie_title">
+	    			<!-- 영화제목 -->
+	    		</div>
+	    	</div>
+	    	<div class="info-theater">
+	    		<div class="selected theater_loc">
+	    			<!-- 극장이름 -->
+	    		</div>
+	    	</div>
+	    	<div class="info-date">
+	    		<div class="selected movie_date">
+	    			<!-- 날짜 -->
+	    		</div>
+	    	</div>
+	    	<div class="info-time">
+	    		<div class="selected movie_time">
+	    			<!-- 시간 -->
+	    		</div>
+	    	</div>
+	    	
+	    	<p style="text-align: right; padding: 10px">
+	    		<button onclick="insertBooking()" style="margin-right: 10px" type="button" class="btn btn-primary">예매</button>
+	    	</p>
+    	</div>
     </div>
 	<input type="hidden" id="movieId" value="">
 	<input type="hidden" id="theaterId" value="">
