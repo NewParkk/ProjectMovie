@@ -31,23 +31,24 @@ public class AdminController {
 	@RequestMapping(value ="/adminPage", method = RequestMethod.GET)
 	public String movieList(Model model) {
 		List<Movie> movieList = adminService.getMovieList();
-		
+		System.out.println(movieList);
 		model.addAttribute("movieList", movieList);
 		return "adminPage";
 	}
 	
 	// 영화 정보 추가폼
-	@RequestMapping(value = "/insertMovieForm", method = RequestMethod.GET)
-	public String insertMovieForm(Model model) {
-	    model.addAttribute("movie", new Movie());
-	    return "insertMovieForm";
+	@RequestMapping(value = "/insertMovieForm", method = RequestMethod.POST)
+	public String insertMovieForm() {
+	 
+	    return "registrationMv";
 	}
 	
 	
 	// 영화 정보 추가
-	@RequestMapping(value = "/InsertMoive", method = RequestMethod.GET)
+	@RequestMapping(value = "/insertMoive", method = RequestMethod.POST)
 	public String insertMoive(@ModelAttribute Movie movie, Model model, RedirectAttributes redirectAttributes ) {
 		adminService.insertMovie(movie);
+
 		addRedirectMessage(redirectAttributes, "영화 정보가 추가되었습니다.");
 		
 		return "redirect:/adminPage";
@@ -77,7 +78,7 @@ public class AdminController {
 
 	     addRedirectMessage(redirectAttributes, "영화 정보가 수정되었습니다.");
 
-	     return "redirect:/movie/{movieId}";
+	     return "redirect:/adminPage";
 	 }
 	
 	

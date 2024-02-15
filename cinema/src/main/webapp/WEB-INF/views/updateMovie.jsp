@@ -52,7 +52,7 @@
 
         <!-- update form area -->
         <div id="update-form" class="container">
-            <form action="/updateMovie" method="post">
+            <form action="/updateMovie/${movie.movieId}" method="post">
                 <div class="form-group">
                     <label for="movieId">영화 ID</label>
                     <input type="text" id="movieId" name="movieId" value="${movie.movieId}" readonly>
@@ -66,7 +66,7 @@
                     <input type="date" id="movieDate" name="movieDate" value="${movie.movieDate}" required>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="수정 완료" class="Btn" onclick="updateMovie()">
+                    <input type="submit" value="수정 완료" class="Btn">
                 </div>
             </form>
         </div>
@@ -78,29 +78,25 @@
     
     
 <script>
-    function deleteMovie() {
-        var movieId = document.getElementById("movieId").value;
+function deleteMovie() {
+    var movieId = document.getElementById("movieId").value;
 
-        if (confirm("정말로 삭제하시겠습니까?")) {
-            fetch('/deleteMovie/' + movieId, {
-                method: 'POST'
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-            	
+    if (confirm("정말로 삭제하시겠습니까?")) {
+        $.ajax({
+            url: '/deleteMovie/' + movieId,
+            type: 'POST',
+            success: function (data) {
                 alert(data.message);
-                window.location.href = 'redirect:/adminPage';
-            })
-            .catch(error => {
-                console.error('Error:', error.message);
-            });
-        }
+                if (data.success) {
+                    window.location.href = 'redirect:/adminPage';
+                }
+            },
+            error: function (error) {
+                console.error('에러:', error.statusText);
+            }
+        });
     }
+}
 </script>    
 </body>
 </html>

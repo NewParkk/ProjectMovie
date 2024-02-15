@@ -8,6 +8,8 @@
         <result property="movieName" column="movie_name" />
         <result property="movieStory" column="movie_story" />
         <result property="movieDate" column="movie_date" />
+        <result property="directorName" column="director_name" />
+        <result property="movieUrl" column="movie_url" />
     </resultMap>
 	
 	<select id="getMovieList"
@@ -25,8 +27,8 @@
 	<insert id="insertMovie"
 			parameterType="com.spring.cinema.model.Movie">
 	 	INSERT INTO 
- 			movie (movie_name, movie_story, movie_date) 
- 			VALUES (#{movieName}, #{movieStory}, #{movieDate})
+ 			movie (movie_name, movie_story, movie_date, director_name, movie_url) 
+ 			VALUES (#{movieName}, #{movieStory}, #{movieDate}, #{directorName}, #{movieUrl})
 	</insert>
   
   	<delete id="deleteMovie"
@@ -39,7 +41,9 @@
   		UPDATE movie
     	SET movie_name = #{movieName},
         	movie_story = #{movieStory},
-        	movie_date = #{movieDate}
+        	movie_date = #{movieDate},
+        	director_name = #{directorName},
+        	movie_url = #{movieUrl}
     	WHERE movie_id = #{movieId}
   	</update>
   

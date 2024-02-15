@@ -52,10 +52,18 @@
 
         <!-- registration form area -->
         <div id="registration-form" class="container">
-            <form action="/InsertMoive" method="post">
+            <form action="/insertMoive" method="POST">
+            	<div class="form-group">
+                    <label for="movierUrl">포스터</label>
+                    <input type="text" id="movierUrl" name="movierUrl">
+                </div>
                 <div class="form-group">
                     <label for="movieName">영화 제목</label>
                     <input type="text" id="movieName" name="movieName" required>
+                </div>
+                <div class="form-group">
+                    <label for="directorName">영화 감독</label>
+                    <input type="text" id="directorName" name="directorName" required>
                 </div>
                 <div class="form-group">
                     <label for="movieDate">개봉일</label>

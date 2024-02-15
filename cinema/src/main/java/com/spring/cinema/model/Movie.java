@@ -12,15 +12,19 @@ public class Movie {
 	private int movieId;
 	private String movieName;
 	private String movieStory;
-	private Date movieDate;
+	private String movieDate;
+	private String directorName;
+	private String movieUrl;
 	
 	@Builder
-	public Movie(int movieId, String movieName, String movieStory, Date movieDate) {
+	public Movie(int movieId, String movieName, String movieStory, String movieDate, String directorName, String movieUrl) {
 		this.movieId = movieId;
 		this.movieName = movieName;
 		this.movieStory = movieStory;
 		this.movieDate = movieDate;
+		this.directorName = directorName;
+		this.movieUrl = movieUrl;
 	}
-	
-	
+
+
 }
