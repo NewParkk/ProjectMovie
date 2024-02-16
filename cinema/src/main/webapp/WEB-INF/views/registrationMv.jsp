@@ -9,10 +9,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin : 0 auto;
         }
 
         #main {
             text-align: center;
+            margin : 0 auto;
+        	margin-top : 100px;
         }
 
         .container {
@@ -64,6 +67,10 @@
                 <div class="form-group">
                     <label for="directorName">영화 감독</label>
                     <input type="text" id="directorName" name="directorName" required>
+                </div>
+                <div class="form-group">
+                    <label for="movieStory">영화 줄거리</label>
+                    <input type="text" id="movieStory" name="movieStory" value="${movie.movieStory}" required>
                 </div>
                 <div class="form-group">
                     <label for="movieDate">개봉일</label>

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <meta charset="UTF-8">
 <title>관리자 페이지 - 영화 목록</title>
 <style>
@@ -10,7 +11,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-         margin : 0 auto;
+        margin : 0 auto;
     }
 
     #main {
@@ -22,7 +23,7 @@
     .container {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: right;
         margin-top: 80px;
     }
 
@@ -36,10 +37,12 @@
         padding: 10px;
         text-align: center;
     }
-
+    
     .add-button {
         margin-bottom: 10px;
         float: right;
+        width: 150px; 
+	    height: 30px;
     }
 
     .main {
@@ -89,7 +92,7 @@
         <div id="movie-list">
             <div class="container">
                 <span style="font-size:12pt; float: right; margin-bottom:10px;" class="add-button">
-                    <input type="button" value="영화 정보 추가" class="addBtn" onclick="location.href='/insertMovieForm'">
+                    <input type="button" value="영화 정보 추가" class="addBtn" onclick="location.href='/registration'">
                 </span>
                 <table class="movie-table">
                     <thead>
@@ -102,13 +105,13 @@
                             <th scope="col" class="th-date">개봉일</th>
                         </tr>
                     </thead>
-                    <c:forEach items="${movieList}" var="movie" varStatus="status">
+                    <c:forEach items="${movieList}" var="movie" varStatus="no">
                         <tbody>
                             <tr>
                             	<td>
                                     <p align="center">
                                         <span style="font-size:12pt;">
-                                            <b>${status.count}</b>
+                                            <b>${no.count}</b>
                                         </span>
                                     </p>
                                 </td>
@@ -146,12 +149,13 @@
                                     </p>
                                 </td>
                                 <td>
-                                   <input type="button" value="수정" class="Btn" onclick="location.href='/updateMovie?movieId=${movie.movieId}'">
-                                </td>
-                                <td bgcolor="">
-                                    <input type="button" value="삭제" class="Btn" onclick="deleteMovie(${movie.movieId})">
-                                </td>
+								    <div style="display: flex; justify-content: space-between;">
+								        <input type="button" value="수정" class="Btn" onclick="location.href='/updateMovie?movieId=${movie.movieId}'">
+								        <input type="button" value="삭제" class="Btn" onclick="deleteMovie(${movie.movieId})">
+								    </div>
+								</td>
                             </tr>
+                      
                         </tbody>
                     </c:forEach>
                 </table>
@@ -165,10 +169,10 @@ function deleteMovie(movieId) {
         $.ajax({
             url: '/deleteMovie/' + movieId,
             type: 'POST',
-            success: function (data) {
-                alert(data.message);
-                if (data.success) {
-                    window.location.href = 'adminPage';
+            success: function(data) {
+            	alert(data);
+                if (data === "영화 정보가 삭제되었습니다.") {
+                    window.location.href = '/adminPage';
                 }
             },
             error: function (error) {
@@ -180,3 +184,5 @@ function deleteMovie(movieId) {
 </script>    
 </body>
 </html>
+
+uncaught referenceError $ is mpt defined

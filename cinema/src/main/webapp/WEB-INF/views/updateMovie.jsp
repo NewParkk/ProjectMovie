@@ -9,10 +9,13 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin : 0 auto;
     }
 
     #main {
         text-align: center;
+        margin : 0 auto;
+        margin-top : 100px;
     }
 
     .container {
@@ -62,6 +65,14 @@
                     <input type="text" id="movieName" name="movieName" value="${movie.movieName}" required>
                 </div>
                 <div class="form-group">
+                    <label for="directorName">영화 감독</label>
+                    <input type="text" id="directorName" name="directorName" value="${movie.directorName}" required>
+                </div>
+                <div class="form-group">
+                    <label for="movieStory">영화 줄거리</label>
+                    <input type="text" id="movieStory" name="movieStory" value="${movie.movieStory}" required>
+                </div>
+                <div class="form-group">
                     <label for="movieDate">개봉일</label>
                     <input type="date" id="movieDate" name="movieDate" value="${movie.movieDate}" required>
                 </div>
@@ -73,21 +84,20 @@
     </main>
 
     <div class="container" style="height:50px;">
-        <span style="font-size:12pt;"><input type="button" value="삭제하기" class="Btn" onclick="deleteMovie()"></span>
+        <span style="font-size:12pt;"><input type="button" value="삭제하기" class="Btn" onclick="deleteMovie(${movieId})"></span>
     </div>
     
     
 <script>
-function deleteMovie() {
-    var movieId = document.getElementById("movieId").value;
-
+function deleteMovie(movieId) {
+   
     if (confirm("정말로 삭제하시겠습니까?")) {
         $.ajax({
             url: '/deleteMovie/' + movieId,
             type: 'POST',
-            success: function (data) {
-                alert(data.message);
-                if (data.success) {
+            success: function(data) {
+            	alert(data);
+                if (data === "영화 정보가 삭제되었습니다.") {
                     window.location.href = 'redirect:/adminPage';
                 }
             },
@@ -97,6 +107,6 @@ function deleteMovie() {
         });
     }
 }
-</script>    
+</script>     
 </body>
 </html>
