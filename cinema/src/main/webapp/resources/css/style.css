@@ -16,7 +16,7 @@
 		    left: 0; /* 화면 왼쪽에 위치 */
 		    width: 100%; /* 전체 너비를 차지 */
 		    z-index: 999; /* 다른 요소 위에 표시됨 */
-		    background-color: rgba(253, 253, 241, 0.8); /* Pink 색상을 50% 투명도로 지정 */
+		    background-color: rgba(253, 253, 241, 1); /* Pink 색상을 50% 투명도로 지정 */
 		}
 		.logo{
 		
@@ -45,7 +45,7 @@
 		.nav_menu a{
 			color: black;
 		    font-family: 'Noto Sans KR', 'CJONLYONENEW', '맑은 고딕', '돋움', Dotum, sans-serif;
-		    font-size:30px;
+		    font-size:20px;
 		    text-decoration: none;
 		    display: inline-block;
 		    padding: 0 5px;
