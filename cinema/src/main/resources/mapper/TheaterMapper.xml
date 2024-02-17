@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.cinema.mapper.TheaterMapper">
 
-    <select id="getAllTheaters" resultType="com.spring.cinema.model.Theater">
-        SELECT * FROM theater
-    </select>
+   <select id="getAllTheaters" resultType="com.spring.cinema.model.Theater">
+      SELECT * FROM theater
+   </select>
+
+   <select id="getMoviesByTheaterId" resultType="com.spring.cinema.model.MovieInfo">
+      SELECT mi.movie_id, m.movie_name
+      FROM movie_info mi
+      INNER JOIN movie m ON mi.movie_id = m.movie_id
+      WHERE mi.theater_id = #{theaterId}
+   </select>
+
+   <select id="getAvailableDatesByTheaterIdAndMovieId" resultType="com.spring.cinema.model.MovieInfo">
+      SELECT DISTINCT mi.movie_info_date
+      FROM movie_info mi
+      WHERE mi.theater_id = #{theaterId}
+      AND mi.movie_id = #{movieId}
+   </select>
+
+   <select id="getAvailableTimesByTheaterIdAndMovieIdAndDate" resultType="com.spring.cinema.model.MovieInfo">
+      SELECT mi.movie_info_time
+      FROM movie_info mi
+      WHERE mi.theater_id = #{theaterId}
+      AND mi.movie_id = #{movieId}
+      AND mi.movie_info_date = #{date}
+   </select>
 
 </mapper>
-
-
