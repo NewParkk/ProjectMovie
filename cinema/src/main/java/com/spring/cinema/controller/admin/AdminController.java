@@ -89,6 +89,7 @@ public class AdminController {
 	     // 영화 정보를 삭제합니다.
 	     adminService.deleteMovie(movieToDelete);
 
+	     addRedirectMessage(redirectAttributes,"영화 정보가 삭제되었습니다.");
 	     
 	     return "영화 정보가 삭제되었습니다.";
 	 }
