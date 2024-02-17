@@ -49,4 +49,10 @@
 		VALUES (#{userId},#{movieInfoId})
 	</insert>
 	
+		<!-- 아이디로 예약조회 -->
+	<select id="getBookByuserId" parameterType="string" resultType="com.spring.cinema.model.MovieBooking">
+				SELECT *
+				FROM movie_booking
+				 WHERE user_id = #{userId}
+	</select>
 </mapper>

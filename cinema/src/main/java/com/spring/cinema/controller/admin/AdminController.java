@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.cinema.model.Movie;
-import com.spring.cinema.service.admin.AdminService;
+import com.spring.cinema.service.user.AdminService;
 
 import lombok.RequiredArgsConstructor;
 

@@ -1,12 +1,13 @@
 package com.spring.cinema.service.impl;
 
-import com.spring.cinema.service.admin.AdminService;
+
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.spring.cinema.mapper.AdminMapper;
 import com.spring.cinema.model.Movie;
+import com.spring.cinema.service.user.AdminService;
 
 import lombok.RequiredArgsConstructor;
 

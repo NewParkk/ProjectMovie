@@ -198,11 +198,5 @@ public class UserController {
 			}
 	
 	    }
-		//예약 페이지
-		@GetMapping(value = "/book")
-		public String movieBook()  {
-			return "booking";
-		}
-		
 
 	}
