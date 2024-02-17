@@ -14,16 +14,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.cinema.model.Review;
+import com.spring.cinema.service.impl.ReviewServiceImpl;
 import com.spring.cinema.service.user.ReviewService;
 
 @Controller
 public class ReviewController {
 
-	private final ReviewService reviewService;
+	private final ReviewServiceImpl reviewServiceimpe;
 	
 	@Autowired
-	public ReviewController(ReviewService reviewService) {
-		this.reviewService = reviewService;
+	public ReviewController(ReviewServiceImpl reviewServiceimpe) {
+		this.reviewServiceimpe = reviewServiceimpe;
 	}
 	
 	//리뷰 작성하기
@@ -37,7 +38,7 @@ public class ReviewController {
 		        // 로그인되어 있지 않으면 로그인 페이지로 리다이렉트
 		        return "redirect:/login";
 		    }
-		boolean result = reviewService.insertReview(review);
+		boolean result = reviewServiceimpe.insertReview(review);
 		if (result) {
 			//return "redirect:/moviedetail"+ review.getMovieName(); 를 사용하면
 			//영화 이름에 있는 특수 문자나 한글 등이 ASCII로 인코딩되지 않아서 발생한다.	
@@ -57,7 +58,7 @@ public class ReviewController {
 	public String deleteReview(@PathVariable Integer reviewId,
 								@RequestParam String movieName) throws UnsupportedEncodingException {
 		System.out.println(reviewId);
-		boolean result = reviewService.deleteReview(reviewId);
+		boolean result = reviewServiceimpe.deleteReview(reviewId);
 		if (result) {
 			return "redirect:/moviedetail?movieName=" + URLEncoder.encode(movieName, "UTF-8");
 		} else {

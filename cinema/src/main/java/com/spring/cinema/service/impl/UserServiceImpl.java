@@ -1,17 +1,67 @@
 package com.spring.cinema.service.impl;
 
-import com.spring.cinema.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public interface UserServiceImpl {
+import com.spring.cinema.mapper.UserMapper;
+import com.spring.cinema.model.User;
+import com.spring.cinema.service.user.UserService;
+
+@Service
+public class UserServiceImpl implements UserService{
 	
-	User getUserByuserId(String userId);
+	private final UserMapper userMapper;
+
+	@Autowired
+	public UserServiceImpl(UserMapper userMapper) {
+		this.userMapper = userMapper;
+	}
+
+	@Override
+	public User getUserByuserId(String userId) {
+
+		return userMapper.getUserByuserId(userId);
+	}
+
+	@Override
+	public boolean insertUser(User newUser) {
+		try {
+			userMapper.insertUser(newUser); 
+			return true; 
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false; 
+		}
+	}
 	
-	boolean insertUser(User newUser);
-	
-	boolean updateUserById(User user);
-	
-	boolean userDelete(String userId);
-	
-	User userIdByNameBirthEmail(String userName, Integer userBirth, String userEmail);
-	
+
+	@Override
+	public boolean updateUserById(User user) {
+		try {
+			userMapper.updateUser(user);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false; 
+		}
+	}
+
+	@Override
+	public boolean userDelete(String userId) {
+		try {
+			userMapper.userDelete(userId);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false; 
+		}
+	}
+
+	@Override
+	public User userIdByNameBirthEmail(String userName, Integer userBirth, String userEmail) {
+		return userMapper.userIdByNameBirthEmail(userName,userBirth,userEmail);
+	}
+
+
+
 }

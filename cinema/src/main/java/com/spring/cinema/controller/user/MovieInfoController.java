@@ -20,6 +20,8 @@ import org.springframework.web.client.RestTemplate;
 
 import com.spring.cinema.model.Movie;
 import com.spring.cinema.model.Review;
+import com.spring.cinema.service.impl.MovieServiceImpl;
+import com.spring.cinema.service.impl.ReviewServiceImpl;
 import com.spring.cinema.service.user.BookService;
 import com.spring.cinema.service.user.MovieService;
 import com.spring.cinema.service.user.ReviewService;
@@ -28,14 +30,14 @@ import com.spring.cinema.service.user.UserService;
 @Controller
 public class MovieInfoController {
 
-	private final MovieService movieService;
-	private final ReviewService reviewService;
+	private final MovieServiceImpl movieServiceimpl;
+	private final ReviewServiceImpl reviewServiceimpe;
 	
 	@Autowired
-	public MovieInfoController(MovieService movieService
-								,ReviewService reviewService) {
-		this.movieService = movieService;
-		this.reviewService = reviewService;
+	public MovieInfoController(MovieServiceImpl movieServiceimpl
+								,ReviewServiceImpl reviewServiceimpe) {
+		this.movieServiceimpl = movieServiceimpl;
+		this.reviewServiceimpe = reviewServiceimpe;
 	}
     @GetMapping(value = "/detail")
     public String movieShow() {
@@ -44,7 +46,7 @@ public class MovieInfoController {
 
     @GetMapping(value = "/movies")
     public String getAllMovies(Model model) {
-    	 ArrayList<Movie> movieList= movieService.getAllMovie();
+    	 ArrayList<Movie> movieList= movieServiceimpl.getAllMovie();
     	 System.out.println(movieList);
     	 model.addAttribute("movieList",movieList);
     	 System.out.println(model.toString());
@@ -72,7 +74,7 @@ public class MovieInfoController {
 //		movie.setMovieDate(movieDate);
 //		movie.setMovieImgUrl(movieImgUrl);
 		
-		boolean result = movieService.movieRegistration(movieName,
+		boolean result = movieServiceimpl.movieRegistration(movieName,
 														movieStory,
 														movieDate,
 														movieImgUrl);
@@ -88,8 +90,8 @@ public class MovieInfoController {
 	@GetMapping("/moviedetail")
 	public String movieDetail(@RequestParam String movieName, Model model) {
 		System.out.println(movieName);
-		Movie movie = movieService.getMovieByName(movieName);
-		ArrayList<Review> reviewList = reviewService.getReviewList(movieName);
+		Movie movie = movieServiceimpl.getMovieByName(movieName);
+		ArrayList<Review> reviewList = reviewServiceimpe.getReviewList(movieName);
 		System.out.println(movie);
 		System.out.println(reviewList);
 		model.addAttribute("movie",movie);

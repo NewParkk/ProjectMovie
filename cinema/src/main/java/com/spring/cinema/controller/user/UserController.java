@@ -21,31 +21,34 @@ import com.spring.cinema.model.Book;
 import com.spring.cinema.model.Movie;
 import com.spring.cinema.model.Review;
 import com.spring.cinema.model.User;
+import com.spring.cinema.service.impl.BookServiceImpl;
+import com.spring.cinema.service.impl.MovieServiceImpl;
+import com.spring.cinema.service.impl.ReviewServiceImpl;
+import com.spring.cinema.service.impl.UserServiceImpl;
 import com.spring.cinema.service.user.BookService;
 import com.spring.cinema.service.user.MovieInfoService;
 import com.spring.cinema.service.user.MovieService;
 import com.spring.cinema.service.user.ReviewService;
-import com.spring.cinema.service.user.UserService;
 
 
 @Controller
 public class UserController {
 	
-	private final UserService userService;
-	private final BookService bookService;
-	private final MovieService movieService;
-	private final ReviewService reviewService;
+	private final UserServiceImpl userServiceimpl;
+	private final BookServiceImpl bookServiceimpl;
+	private final MovieServiceImpl movieServiceimpl;
+	private final ReviewServiceImpl reviewServiceimpl;
 	
 	//서버 매핑
 	@Autowired
-	public UserController(UserService userService, 
-							BookService bookService,
-							MovieService movieService,
-							ReviewService reviewService) {
-		this.userService = userService;
-		this.bookService = bookService;
-		this.movieService = movieService;
-		this.reviewService = reviewService;
+	public UserController(UserServiceImpl userServiceimpl, 
+						BookServiceImpl bookServiceimpl,
+						MovieServiceImpl movieServiceimpl,
+						ReviewServiceImpl reviewServiceimpl) {
+		this.userServiceimpl = userServiceimpl;
+		this.bookServiceimpl = bookServiceimpl;
+		this.movieServiceimpl = movieServiceimpl;
+		this.reviewServiceimpl = reviewServiceimpl;
 		
 
 	}
@@ -54,7 +57,7 @@ public class UserController {
 	@PostMapping("/log")
 	public String login(@RequestParam("userId") String userId, @RequestParam("userPassword") String userPassword,
 			HttpSession session) {
-		User user = userService.getUserByuserId(userId);
+		User user = userServiceimpl.getUserByuserId(userId);
 		if (user != null && BCrypt.checkpw(userPassword, user.getUserPassword())) {
 			
 			session.setAttribute("userId", user.getUserId());
@@ -83,7 +86,7 @@ public class UserController {
 		String hashedPassword = BCrypt.hashpw(newUser.getUserPassword(), BCrypt.gensalt());
 		newUser.setUserPassword(hashedPassword);
 
-		boolean result = userService.insertUser(newUser);
+		boolean result = userServiceimpl.insertUser(newUser);
 		if (result) {
 			return "redirect:/login";
 		} else {
@@ -100,14 +103,14 @@ public class UserController {
 								@RequestParam String  userGender,
 								@RequestParam String  userEmail) {
 		
-		User user = userService.getUserByuserId(userId);
+		User user = userServiceimpl.getUserByuserId(userId);
 		String hashedPassword = BCrypt.hashpw(userPassword, BCrypt.gensalt());
 		user.setUserName(userName);
 		user.setUserPassword(hashedPassword);
 		user.setUserBirth(userBirth);
 		user.setUserGender(userGender);
 		user.setUserEmail(userEmail);		
-		boolean result = userService.updateUserById(user);
+		boolean result = userServiceimpl.updateUserById(user);
 		if (result) {
 			return "redirect:/main";
 		} else {
@@ -120,10 +123,10 @@ public class UserController {
 		@GetMapping(value = "/userinfo/{userId}")
 		public String userInfo(@PathVariable String userId, Model model) {
 			//유저 정보 받기
-			User user = userService.getUserByuserId(userId);
+			User user = userServiceimpl.getUserByuserId(userId);
 			//예약 정보 받기
-			ArrayList<Book> booking = bookService.getBookByuserId(userId);
-			ArrayList<Review> reviewsList = reviewService.getreviewById(userId);
+			ArrayList<Book> booking = bookServiceimpl.getBookByuserId(userId);
+			ArrayList<Review> reviewsList = reviewServiceimpl.getreviewById(userId);
 			model.addAttribute("user", user);
 			//예약 목록에 영화 정보 리스트를 어떻게 출력할것인가
 			model.addAttribute("booking",booking);
@@ -148,7 +151,7 @@ public class UserController {
 	@GetMapping(value="/userDelete/{userId}")
 	public String userDelete(@PathVariable String userId) {
 
-		boolean result = userService.userDelete(userId);
+		boolean result = userServiceimpl.userDelete(userId);
 		if(result) {
 			System.out.println(result);
 			return "redirect:/login";
@@ -163,7 +166,7 @@ public class UserController {
 			@RequestParam Integer userBirth,
 			@RequestParam String  userEmail, Model model) {
 
-			User user= userService.userIdByNameBirthEmail(userName,userBirth,userEmail);
+			User user= userServiceimpl.userIdByNameBirthEmail(userName,userBirth,userEmail);
 			if(user == null) {
 				return "redirect:/error";
 			}
@@ -179,7 +182,7 @@ public class UserController {
 						@RequestParam Integer userBirth, 
 						@RequestParam String  userEmail,
 						Model model) {
-		User user= userService.userIdByNameBirthEmail(userName,userBirth,userEmail);
+		User user= userServiceimpl.userIdByNameBirthEmail(userName,userBirth,userEmail);
 		
 		    if (user.getUserBirth().equals(userBirth) && user.getUserId().equals(userId)
 		    		&&user != null) {
@@ -192,10 +195,10 @@ public class UserController {
 		@PostMapping(value="/chagePw/{userId}")
 		public String findPw(@PathVariable String userId,
 							@RequestParam String userPassword) {
-			User user = userService.getUserByuserId(userId);
+			User user = userServiceimpl.getUserByuserId(userId);
 			String hashedPassword = BCrypt.hashpw(userPassword, BCrypt.gensalt());
 	    	user.setUserPassword(hashedPassword);
-	    	boolean result = userService.updateUserById(user);
+	    	boolean result = userServiceimpl.updateUserById(user);
 			if (result) {
 				return "redirect:/login";
 			} else {
