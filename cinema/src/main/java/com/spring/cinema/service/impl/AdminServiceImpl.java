@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.spring.cinema.mapper.AdminMapper;
 import com.spring.cinema.model.Movie;
-import com.spring.cinema.service.admin.AdminService;
 
 import lombok.RequiredArgsConstructor;
 

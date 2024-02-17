@@ -1,5 +1,5 @@
 package com.spring.cinema.service.user;
 
-public interface BookService {
+public interface MovieService {
 
 }

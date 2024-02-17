@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="true"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +49,6 @@
 </head>
 <body>
     <%@ include file="header.jsp" %>
-
     <!-- main -->
     <main id="main">
         <h3>영화 정보 추가</h3>

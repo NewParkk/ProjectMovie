@@ -5,6 +5,6 @@ import org.springframework.stereotype.Service;
 import com.spring.cinema.service.user.MovieInfoService;
 
 @Service
-public class MovieInfoServieImpl implements MovieInfoService{
+public class MovieInfoServiceImpl implements MovieInfoService{
 
 }

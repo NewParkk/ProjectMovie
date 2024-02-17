@@ -1,26 +1,24 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var toggleButton = document.getElementById('toggle');
+    var toggleButton = document.querySelector('.header-container header label[for="toggle"]');
     var navMenu = document.querySelector('.nav_menu');
     toggleButton.addEventListener('click', function() {
         navMenu.classList.toggle('active');
     });
+
+    document.querySelector('.chat-button span').addEventListener('click' , function(){
+        document.querySelector('.chat-button').style.display = "none";
+        document.querySelector('.chat-box').style.visibility = "visible";
+    });
+
+    document.querySelector('.chat-box .chat-box-header p').addEventListener('click' , function(){
+        document.querySelector('.chat-button').style.display = "block";
+        document.querySelector('.chat-box').style.visibility = "hidden";
+    });
+
+    document.querySelector('.modal-close-button').addEventListener("click" , function(){
+        document.querySelector(".modal").classList.toggle("show-modal");
+    });
 });
-
-document.getElementsByClassName("chat-button")[0].addEventListener('click' , function(){
-  document.getElementsByClassName("chat-button")[0].style.display = "none";
-  
-  document.getElementsByClassName("chat-box")[0].style.visibility = "visible";
-});
-
-document.querySelector('.chat-box .chat-box-header p').addEventListener('click' , function(){
-  document.getElementsByClassName("chat-button")[0].style.display = "block";
-  document.getElementsByClassName("chat-box")[0].style.visibility = "hidden";
-})
-
-document.getElementsByClassName("modal-close-button")[0].addEventListener("click" , function(){
-  document.getElementByClassName("modal")[0].classList.toggle("show-modal");
-})
-
 let chatBox = document.getElementById("chat-box");
 
 var sockJs = new SockJS("/stomp/chatbot");

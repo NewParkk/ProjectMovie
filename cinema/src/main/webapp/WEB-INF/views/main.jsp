@@ -3,30 +3,35 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Movie Recommendation & Booking</title>
+    <title>Movie Recommendation Booking</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
  <%@ include file="header.jsp" %>
- 
+ <style>
+    /* 이미지에 올렸을 때 커서를 변경하는 스타일 */
+    .slide img:hover {
+        cursor: pointer;
+    }
+</style>
 </head>
 <body>
   
 
 <div id="slideshow-container" >
    
-  <div class="slide">
-      <img src="resources/img/시민덕희.jpg" alt="Image 1">
-      <img src="resources/img/노량.jpg" alt="Image 2">
-      <img src="resources/img/괴물.jpg" alt="Image 3">
-      <img src="resources/img/도그맨.jpg" alt="Image 4">
-      <img src="resources/img/짱구는 못말려.jpg" alt="Image 5">
-      <img src="resources/img/인투더월드.jpg" alt="Image 6">
-      <img src="resources/img/위시.jpg" alt="Image 7">
-      <img src="resources/img/외계인2부.jpg" alt="Image 8">
-      <img src="resources/img/상견니.jpg" alt="Image 9">
-</div>
-
+ <div class="slide">
+       <img src="resources/img/monster.jpg" alt="Image 1" onclick="navigateToMovieDetail('괴물')">
+	    <img src="resources/img/yellow.jpg" alt="Image 2" onclick="navigateToMovieDetail('노량')">
+	    <img src="resources/img/deadman.png" alt="Image 3" onclick="navigateToMovieDetail('데드맨')"> 
+      <img src="resources/img/dogman.jpg" alt="Image 4" onclick="navigateToMovieDetail('도그맨')">
+      <img src="resources/img/springofseoul.jpg" alt="Image 5" onclick="navigateToMovieDetail('서울의봄')">
+      <img src="resources/img/intoworld.jpg" alt="Image 6" onclick="navigateToMovieDetail('인투월드')">
+      <img src="resources/img/wish.jpg" alt="Image 7" onclick="navigateToMovieDetail('소원')">
+      <img src="resources/img/alien2.jpg" alt="Image 8" onclick="navigateToMovieDetail('에일리언2')">
+      <img src="resources/img/helloni.jpg" alt="Image 9"onclick="navigateToMovieDetail('헬로니')">
+</div> 
+ 
 </div>
 
 <div class="mag">
@@ -36,24 +41,22 @@
   <ul class="movie-list">
     <li>
       <section id="movie-recommendation">
-        <a href="#" class="movie-card">
-          <div class="movie-image" style="background-image: url('resources/img/외계인2부.jpg');"></div>
+        <a href="#" class="movie-card" onclick="navigateToMovieDetail('에일리언2')">
+          <div class="movie-image" style="background-image: url(resources/img/alien2.jpg);"></div>
           <div class="movie-details">
             <h3>외계+인2부</h3>
-            <p>장르</p>
-            <p>개봉일</p>
+            <p>장르 : 액션</p>
           </div>
         </a>
       </section>
     </li>
     <li>
       <section id="movie-recommendation">
-        <a href="#" class="movie-card">
-          <div class="movie-image" style="background-image: url('resources/img/괴물.jpg');"></div>
+       <a href="#" class="movie-card" onclick="navigateToMovieDetail('노량')">
+          <div class="movie-image" style="background-image: url(resources/img/yellow.jpg);"></div>
           <div class="movie-details">
-            <h3>Movie 1</h3>
-            <p>장르</p>
-            <p>개봉일</p>
+            <h3>노량</h3>
+            <p>장르 : 사극</p>
           </div>
         </a>
       </section>
@@ -61,12 +64,11 @@
     <li>
       <section id="movie-recommendation">
         <div class="movie-list">
-          <a href="#" class="movie-card">
-            <div class="movie-image" style="background-image: url('resources/img/짱구는 못말려.jpg');"></div>
+         <a href="#" class="movie-card" onclick="navigateToMovieDetail('데드맨')">
+            <div class="movie-image" style="background-image: url(resources/img/deadman.png);"></div>
             <div class="movie-details">
-              <h3>Movie 1</h3>
-              <p>장르</p>
-              <p>개봉일</p>
+              <h3>데드맨</h3>
+              <p>장르 : 액션</p>
             </div>
           </a>
         </div>
@@ -74,40 +76,19 @@
     </li>
     <li>
       <section id="movie-recommendation">
-        <div class="movie-list">
-          <a href="#" class="movie-card">
-            <div class="movie-image" style="background-image: url('resources/img/도그맨.jpg');"></div>
-            <div class="movie-details">
-              <h3>Movie 1</h3>
-              <p>장르</p>
-              <p>개봉일</p>
-            </div>
-          </a>
-        </div>
+			<div class="movie-list">
+		        <a href="#" class="movie-card" onclick="navigateToMovieDetail('인투월드')">
+		            <div class="movie-image" style="background-image: url(resources/img/intoworld.jpg);"></div>
+		            <div class="movie-details">
+		                <h3>인투 더 월드</h3>
+		                <p>장르 : 애니메이션</p>
+		            </div>
+		        </a>
+		    </div>
       </section>
     </li>
   </ul>
 </div>
-<!-- <section id="movie-booking">
-    <h2>Movie Booking</h2>
-    <div class="booking-form">
-        <form>
-            <label for="selectedMovie">Select a Movie:</label>
-            <select id="selectedMovie" name="selectedMovie" required>
-                <option value="movie1">Movie 1</option>
-            
-            </select>
-
-            <label for="bookingDate">Select Date:</label>
-            <input type="date" id="bookingDate" name="bookingDate" required>
-
-            <label for="numTickets">Number of Tickets:</label>
-            <input type="number" id="numTickets" name="numTickets" min="1" required>
-
-            <button type="submit">Book Now</button>
-        </form>
-    </div>
-</section> -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- Slick Slider JS -->
@@ -126,6 +107,10 @@ $(document).ready(function(){
         slidesToScroll: 5 // 한 번에 넘어갈 슬라이드 수
     });
 });
+
+function navigateToMovieDetail(movieName) {
+    window.location.href = '/moviedetail?movieName=' + movieName;
+}
 </script>
 </body>
 

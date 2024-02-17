@@ -50,5 +50,6 @@
 		FROM user
 		WHERE user_name = #{userName} AND user_email = #{userEmail} AND user_birth = #{userBirth} 
 	</select> 
+	
 
 	</mapper>

@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
- <%@ include file="header.jsp" %>
+<h2> ${exceptionMessage}</h2>
 </body>
 </html>

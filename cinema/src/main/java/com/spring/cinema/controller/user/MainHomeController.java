@@ -1,6 +1,10 @@
 package com.spring.cinema.controller.user;
 
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -18,12 +22,12 @@ public class MainHomeController {
 	//영화 리스트페이지
 	@GetMapping(value = "/movielist")
 	public String movieList()  {
-		return "movielist";
+		return "test";
 	}
 	//리뷰 페이지
-	@GetMapping(value = "/review")
+	@GetMapping(value = "/theather")
 	public String movieReview()  {
-		return "review";
+		return "theather";
 	}
 
 	//회원가입 홈페이지
@@ -35,9 +39,19 @@ public class MainHomeController {
 
 	//로그인 페이지
 	@GetMapping(value = "/login")
-	public String Login()  {
-		return "userLogIn";
+	public String Login(HttpServletRequest request, HttpServletResponse response)  {
+		
+		HttpSession session = request.getSession(false);
+		if (session == null || session.getAttribute("userId") == null) {
+			return "userLogIn";
+		}
+		return "redirect:/main";
 	}
 
+	//영화 등록 페이지
+	@GetMapping(value = "/registration")
+	public String movieRegistration()  {
+		return "registrationMv";
+	}
 	}
 

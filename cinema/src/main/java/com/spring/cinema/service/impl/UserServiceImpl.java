@@ -7,31 +7,63 @@ import com.spring.cinema.mapper.UserMapper;
 import com.spring.cinema.model.User;
 import com.spring.cinema.service.user.UserService;
 
-import lombok.RequiredArgsConstructor;
-
-@RequiredArgsConstructor
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService{
 	
-	private UserMapper userMapper;
-	
+	private final UserMapper userMapper;
+
 	@Autowired
-	public void UserService(UserMapper userMapper) {
+	public UserServiceImpl(UserMapper userMapper) {
 		this.userMapper = userMapper;
 	}
-	
-	public User getUserByUsername(String username) {
-		return userMapper.getUserByUsername(username);
+
+	@Override
+	public User getUserByuserId(String userId) {
+
+		return userMapper.getUserByuserId(userId);
 	}
+
+	@Override
 	public boolean insertUser(User newUser) {
 		try {
-			userMapper.insertUser(newUser);
+			userMapper.insertUser(newUser); 
+			return true; 
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false; 
+		}
+	}
+	
+
+	@Override
+	public boolean updateUserById(User user) {
+		try {
+			userMapper.updateUser(user);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			return false; 
 		}
 	}
+
+	@Override
+	public boolean userDelete(String userId) {
+		try {
+			userMapper.userDelete(userId);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false; 
+		}
+	}
+
+	@Override
+	public User userIdByNameBirthEmail(String userName, Integer userBirth, String userEmail) {
+		return userMapper.userIdByNameBirthEmail(userName,userBirth,userEmail);
+	}
+
+
+
 }
 
 

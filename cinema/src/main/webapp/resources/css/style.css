@@ -233,7 +233,24 @@
 			        box-sizing: border-box;
 			        padding: 0 10px;
 			    }
-		   
+				    .nav_menu.active a {
+				        display: block;
+				        text-align: center;
+				        margin: 0 auto; /* 수평 가운데 정렬 추가 */
+				        margin-bottom: 10px;
+				    }
+				
+				    /* 로그인, 로그아웃, 회원정보 버튼 가운데 정렬 */
+				    .log {
+				        text-align: center;
+				    }
+				    .option a{
+				    margin-left: 10px; /* 간격 조정 */
+				    }
+				    .log a {
+				        display: inline-block; /* 옆으로 출력되는 것 방지 */
+				        margin-left: 10px; /* 간격 조정 */
+				    }
 		    #toggle {
 		        width: 520px;
 		        height: 30px;
@@ -246,16 +263,22 @@
 
 		    }
 		    
-		
-		    .nav_menu.active {
+    	   .nav_menu.active {
 		        display: block;
+		        text-align: center; /* 네비게이션 메뉴 아이템 가운데 정렬 */
 		    }
+				
 		    
 	
 		    .logo {
-				
-		    }
-		    
+			    position: fixed;
+			    top: 10px;
+			    left: 20px;
+			    z-index: 1000;
+			    background-color: rgba(253, 253, 241, 0.8);
+
+			}
+					    
 		   
 		    .nav_menu li {
 		        margin-bottom: 15px;
@@ -277,8 +300,7 @@
 		    #toggle {
 		        display: none;
 		    }
-		    
-		   
+		  
 		    header label {
 		        display: none;
 		    }
