@@ -110,7 +110,7 @@
                                 </td>
                                 <td>
                                     <p align="center">
-                                        <img src="${movie.movieUrl}" alt="포스터가  없습니다" class="poster">
+                                        <img src="${movie.movieImgUrl}" alt="포스터가  없습니다" class="poster">
                                     </p>
                                 </td>
                                 <td>

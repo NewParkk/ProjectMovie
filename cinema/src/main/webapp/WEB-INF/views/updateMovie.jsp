@@ -57,6 +57,10 @@
         <div id="update-form" class="container">
             <form action="/updateMovie/${movie.movieId}" method="post">
                 <div class="form-group">
+                    <label for="movieImgUrl">영화 포스터</label>
+                    <input type="text" id="movieImgUrl" name="movieImgUrl" value="${movie.movieImgUrl}">
+                </div>
+                <div class="form-group">
                     <label for="movieId">영화 ID</label>
                     <input type="text" id="movieId" name="movieId" value="${movie.movieId}" readonly>
                 </div>

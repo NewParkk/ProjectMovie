@@ -57,8 +57,8 @@
         <div id="registration-form" class="container">
             <form action="/insertMoive" method="POST">
             	<div class="form-group">
-                    <label for="movierUrl">포스터</label>
-                    <input type="text" id="movierUrl" name="movierUrl">
+                    <label for="movieImgUrl">포스터</label>
+                    <input type="text" id="movieImgUrl" name="movieImgUrl">
                 </div>
                 <div class="form-group">
                     <label for="movieName">영화 제목</label>
