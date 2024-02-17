@@ -1,0 +1,33 @@
+		.container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* 화면의 높이만큼 박스가 채워집니다 */
+        }
+
+        .user-box {
+            width: 50%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: white;
+            text-align: center; /* 텍스트를 가운데 정렬합니다 */
+        }
+        .button {
+            margin-top: 10px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* 버튼에 마우스 호버 효과 */
+        .button:hover {
+            background-color: darkblue;
+        }
+       

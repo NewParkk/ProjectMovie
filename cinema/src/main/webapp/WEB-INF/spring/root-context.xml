@@ -7,14 +7,20 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
+<!-- 참고 -->
+<!-- https://jijs.tistory.com/entry/spring-%EC%84%A4%EC%A0%95-xml%EA%B3%BC-%EC%86%8C%EC%8A%A4%EC%BD%94%EB%93%9C%EC%97%90%EC%84%9C-properties-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0 -->
+
+
+<context:property-placeholder location="/WEB-INF/*.properties" /> 
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName"
-			value="com.mysql.cj.jdbc.Driver" />
+			value="${jdbc.driver}" />
 		<property name="jdbcUrl"
-			value="jdbc:mysql://localhost:3306/cinema?serverTimezone=Asia/Seoul" />
-		<property name="username" value="SCOTT" />
-		<property name="password" value="TIGER" />
+			value="${jdbc.url}" />
+		<property name="username" value="${jdbc.id}" />
+		<property name="password" value="${jdbc.pw}" />
 	</bean>
 
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
@@ -27,6 +33,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations" value="classpath:xml/*.xml" />
 	</bean>
+
 
 	<bean id="sqlSession"
 		class="org.mybatis.spring.SqlSessionTemplate">

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -80,6 +81,15 @@
     }    
     
 </style>
+=======
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+>>>>>>> theater
 </head>
 <body>
     <%@ include file="header.jsp" %>
@@ -185,4 +195,3 @@ function deleteMovie(movieId) {
 </body>
 </html>
 
-uncaught referenceError $ is mpt defined
