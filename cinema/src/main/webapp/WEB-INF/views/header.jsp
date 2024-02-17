@@ -24,7 +24,7 @@
         <div class="nav_menu">
         	<div class="option">
            <a href="/movies">영화</a>
-           <a href="/theather">극장</a>
+           <a href="/theaters">극장</a>
             <a href="/book">예매</a>
             <c:if test="${not empty sessionScope.userAdmin}">
            <a href="/registration?userId=${sessionScope.userId}">영화 등록</a>

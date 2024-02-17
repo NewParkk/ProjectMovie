@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.spring.cinema.model.Movie;
 
-public interface adminService {
+public interface AdminService {
 
 	List<Movie> getMovieList();
 
