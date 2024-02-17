@@ -59,7 +59,7 @@ public class UserController {
 			
 			session.setAttribute("userId", user.getUserId());
 			session.setAttribute("userAdmin", user.getUserAdmin());
-			System.out.println(user.getUserAdmin());
+
 			if (user.getUserAdmin()) {
 				return "redirect:/main";
 			} else {
@@ -209,9 +209,5 @@ public class UserController {
 			return "booking";
 		}
 		
-		//영화 등록 페이지
-		@GetMapping(value = "/registration")
-		public String movieRegistration()  {
-			return "registrationMv";
-		}
+
 	}

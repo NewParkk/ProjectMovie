@@ -26,7 +26,10 @@
            <a href="/movies">영화</a>
            <a href="/theather">극장</a>
             <a href="/book">예매</a>
-            <a href="/registration">영화 등록</a>
+            <c:if test="${not empty sessionScope.userAdmin}">
+           <a href="/registration?userId=${sessionScope.userId}">영화 등록</a>
+
+             </c:if>
             </div>
             <div class ="log">
             <c:if test="${empty sessionScope.userId}">
@@ -74,13 +77,4 @@
             <h1>Add What you want here.</h1>
         </div>
 </div>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const toggleButton = document.getElementById('toggle');
-    const navMenu = document.querySelector('.nav_menu');
 
-    toggleButton.addEventListener('click', function() {
-        navMenu.classList.toggle('active');
-    });
-});
-</script>

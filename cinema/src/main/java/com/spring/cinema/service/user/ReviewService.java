@@ -23,7 +23,32 @@ public class ReviewService {
 	public ArrayList<Review> getreviewById(String userId) {
 		return reviewMapper.getreviewById(userId);
 	}
-	
-	
-	
+
+	public boolean insertReview(Review review) {
+		try {
+			reviewMapper.insertReview(review);
+			return true; 
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false; 
+		}
+	}
+
+	public ArrayList<Review> getReviewList(String movieName) {
+		
+		return reviewMapper.getReviewList(movieName);
+	}
+
+	public boolean deleteReview(Integer reviewId) {
+		try {
+		  reviewMapper.deleteReview(reviewId);
+		return true; 
+	} catch (Exception e) {
+		e.printStackTrace();
+		return false; 
+	}
+	}
 }
+	
+	
+

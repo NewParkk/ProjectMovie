@@ -44,9 +44,8 @@
 		
 		
 			<interceptor> 
-		        <mapping path="/registration/**"/> 
-		        <exclude-mapping path="/login"/> 
-		        <exclude-mapping path="/main"/> 
+		        <mapping path="/registration"/> 
+		        <exclude-mapping path="/header.jsp"/> 
 		        <beans:bean id="AdminInterceptor" class="com.spring.cinema.grobal.interceptor.AdminInterceptor"/> 
 		    </interceptor>
 		</interceptors>

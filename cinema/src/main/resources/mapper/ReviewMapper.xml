@@ -10,4 +10,25 @@
 				FROM review
 				 WHERE user_id = #{userId}
 	</select>
+	
+	<insert id="insertReview"
+		parameterType="Review">
+		INSERT INTO review (content, user_id, movie_name)
+		VALUES (#{content}, #{userId},
+		#{movieName}
+		)
+	</insert>
+	
+		<select id="getReviewList" parameterType="string" resultType="Review">
+				SELECT *
+				FROM review
+				 WHERE movie_name = #{movieName}
+	</select>
+	
+	<delete id="deleteReview" parameterType="int">
+    	DELETE 
+    	FROM review 
+    	WHERE review_id = #{reviewId}
+    
+    </delete>
 </mapper>

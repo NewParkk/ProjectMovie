@@ -12,4 +12,10 @@ public interface ReviewMapper {
 
 	ArrayList<Review> getreviewById(@Param("userId")String userId);
 
+	int insertReview(Review review);
+
+	ArrayList<Review> getReviewList(@Param("movieName")String movieName);
+
+	int deleteReview(@Param("reviewId")Integer reviewId);
+
 }

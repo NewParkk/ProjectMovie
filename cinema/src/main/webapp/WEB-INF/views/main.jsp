@@ -8,7 +8,12 @@
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
  <%@ include file="header.jsp" %>
- 
+ <style>
+    /* 이미지에 올렸을 때 커서를 변경하는 스타일 */
+    .slide img:hover {
+        cursor: pointer;
+    }
+</style>
 </head>
 <body>
   
@@ -16,15 +21,15 @@
 <div id="slideshow-container" >
    
  <div class="slide">
-      <img src="resources/img/monster.jpg" alt="Image 1">
-      <img src="resources/img/yellow.jpg" alt="Image 2">
-      <img src="resources/img/deadman.png" alt="Image 3">
-      <img src="resources/img/dogman.jpg" alt="Image 4">
-      <img src="resources/img/springofseoul.jpg" alt="Image 5">
-      <img src="resources/img/intoworld.jpg" alt="Image 6">
-      <img src="resources/img/wish.jpg" alt="Image 7">
-      <img src="resources/img/alien2.jpg" alt="Image 8">
-      <img src="resources/img/helloni.jpg" alt="Image 9">
+       <img src="resources/img/monster.jpg" alt="Image 1" onclick="navigateToMovieDetail('괴물')">
+	    <img src="resources/img/yellow.jpg" alt="Image 2" onclick="navigateToMovieDetail('노량')">
+	    <img src="resources/img/deadman.png" alt="Image 3" onclick="navigateToMovieDetail('데드맨')"> 
+      <img src="resources/img/dogman.jpg" alt="Image 4" onclick="navigateToMovieDetail('도그맨')">
+      <img src="resources/img/springofseoul.jpg" alt="Image 5" onclick="navigateToMovieDetail('서울의봄')">
+      <img src="resources/img/intoworld.jpg" alt="Image 6" onclick="navigateToMovieDetail('인투월드')">
+      <img src="resources/img/wish.jpg" alt="Image 7" onclick="navigateToMovieDetail('소원')">
+      <img src="resources/img/alien2.jpg" alt="Image 8" onclick="navigateToMovieDetail('에일리언2')">
+      <img src="resources/img/helloni.jpg" alt="Image 9"onclick="navigateToMovieDetail('헬로니')">
 </div> 
  
 </div>
@@ -36,24 +41,22 @@
   <ul class="movie-list">
     <li>
       <section id="movie-recommendation">
-        <a href="#" class="movie-card">
-          <div class="movie-image" style="background-image: url(resources/img/monster.jpg);"></div>
+        <a href="#" class="movie-card" onclick="navigateToMovieDetail('에일리언2')">
+          <div class="movie-image" style="background-image: url(resources/img/alien2.jpg);"></div>
           <div class="movie-details">
             <h3>외계+인2부</h3>
-            <p>장르</p>
-            <p>개봉일</p>
+            <p>장르 : 액션</p>
           </div>
         </a>
       </section>
     </li>
     <li>
       <section id="movie-recommendation">
-        <a href="#" class="movie-card">
+       <a href="#" class="movie-card" onclick="navigateToMovieDetail('노량')">
           <div class="movie-image" style="background-image: url(resources/img/yellow.jpg);"></div>
           <div class="movie-details">
-            <h3>Movie 1</h3>
-            <p>장르</p>
-            <p>개봉일</p>
+            <h3>노량</h3>
+            <p>장르 : 사극</p>
           </div>
         </a>
       </section>
@@ -61,12 +64,11 @@
     <li>
       <section id="movie-recommendation">
         <div class="movie-list">
-          <a href="#" class="movie-card">
+         <a href="#" class="movie-card" onclick="navigateToMovieDetail('데드맨')">
             <div class="movie-image" style="background-image: url(resources/img/deadman.png);"></div>
             <div class="movie-details">
-              <h3>Movie 1</h3>
-              <p>장르</p>
-              <p>개봉일</p>
+              <h3>데드맨</h3>
+              <p>장르 : 액션</p>
             </div>
           </a>
         </div>
@@ -74,16 +76,15 @@
     </li>
     <li>
       <section id="movie-recommendation">
-        <div class="movie-list">
-          <a href="#" class="movie-card">
-            <div class="movie-image" style="background-image: url(resources/img/intoworld.jpg);"></div>
-            <div class="movie-details">
-              <h3>Movie 1</h3>
-              <p>장르</p>
-              <p>개봉일</p>
-            </div>
-          </a>
-        </div>
+			<div class="movie-list">
+		        <a href="#" class="movie-card" onclick="navigateToMovieDetail('인투월드')">
+		            <div class="movie-image" style="background-image: url(resources/img/intoworld.jpg);"></div>
+		            <div class="movie-details">
+		                <h3>인투 더 월드</h3>
+		                <p>장르 : 애니메이션</p>
+		            </div>
+		        </a>
+		    </div>
       </section>
     </li>
   </ul>
@@ -106,6 +107,10 @@ $(document).ready(function(){
         slidesToScroll: 5 // 한 번에 넘어갈 슬라이드 수
     });
 });
+
+function navigateToMovieDetail(movieName) {
+    window.location.href = '/moviedetail?movieName=' + movieName;
+}
 </script>
 </body>
 

@@ -66,30 +66,7 @@
 		    margin-left: 200px;
 		    height: 100vh; 
 		}
-		.box {
-		    padding: 15px;
-		    box-shadow: 1px 1px 2px 4px rgba(0.1, 0.1, 0.1, 0.1);
-		    border-radius: 5px;
-		    overflow: hidden;
-		    width: calc(50% - 15px);
-		    height: 400px;
-		    margin-bottom: 30px;
-		    background-color: #f8f8f8;
-		   
-		}
-		
-		.box h1 {
-		    text-align: center;
-		}
-		
-		
-		.small-box {
-				height: 300px;
-				border: 1px solid #ccc;
-				background-color: white;
-				margin: 8px; 
-				overflow-y: auto; 
-		}
+
 		
 		
 		.modal-container {
@@ -145,7 +122,7 @@
 		 	margin-top:50px;
             text-align: center;
             border-collapse: collapse;
-            width: 900px;
+            width: 1100px;
         }
 
         td {

@@ -106,7 +106,6 @@
              <th colspan="5" style="background-color: skyblue;">Review List</th>
         </tr>
         <tr>
-             <th style="font-size: 12px;">번호</th>
              <th style="font-size: 12px;">영화 제목</th>
              <th style="font-size: 12px;">댓글</th>
              <th style="font-size: 12px;">작성 날짜</th>
@@ -124,7 +123,6 @@
                     <tr style="background-color: #dddddd;">
                 </c:otherwise>
             </c:choose>
-                <td style="font-size: 12px;">${review.reviewId}</td>
                 <td style="font-size: 12px;">${review.movieName}</td>
                 <td style="font-size: 12px;">${review.content}</td>
                 <td style="font-size: 12px;">${fn:substring(review.createDate, 0, 10)}</td>
