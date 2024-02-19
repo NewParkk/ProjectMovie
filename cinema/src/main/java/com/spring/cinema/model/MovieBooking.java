@@ -1,33 +1,25 @@
 package com.spring.cinema.model;
 
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Time;
 
-import lombok.Builder;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class MovieBooking {
 	
-	private int movieBookingId; 
-	private int userId; 
-	private int movieId;
-	private int theaterId;
-	private int movieInfoId; 
+	private Integer movieBookingId; 
+	private String userId; 
+	private Integer movieId;
+	private Integer theaterId;
 	private Date movieInfoDate;
-	private Date movieInfotime;
+	private String movieInfoTime;
 	
-	@Builder
-	public MovieBooking(int movieBookingId, int userId, int movieId, int theaterId, int movieInfoId, Date movieInfoDate,
-			Date movieInfotime) {
-		this.movieBookingId = movieBookingId;
-		this.userId = userId;
-		this.movieId = movieId;
-		this.theaterId = theaterId;
-		this.movieInfoId = movieInfoId;
-		this.movieInfoDate = movieInfoDate;
-		this.movieInfotime = movieInfotime;
-	}
+	
 	
 }

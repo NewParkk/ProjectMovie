@@ -164,6 +164,7 @@
 	<input type="hidden" id="movieId" value="">
 	<input type="hidden" id="theaterId" value="">
 	<input type="hidden" id="movieInfoDate" value="">
+	
 	<input type="hidden" id="movieInfoId" value="">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
@@ -174,142 +175,137 @@
     // MovieBookingController에서 보낸 movieId, theaterId, movieInfoDate값을 받아 받은 파라미터의 갯수로
     // mappingURL을 판단하여 각각 해당 컨트롤러로 보냄
     // 그 후 controller에서 값을 받아 출력.
-    function infoList(obj, movieId, theaterId, movieInfoDate){
-    	var data = new Object();
-    	// 주석 보낼 url
-    	var url = "";
-    	// 주석 각 case를 구분하기 위한값
-    	var listFlag = "";
-    	// 주석 조회되는 값 없을시 출력할 Str
-    	var listStr = "";
-    	// infoList가 어디서 실행되든 false유지
-    	lastFlag = false;
-    	// 주석 time을 가져오기 위함
-    	if(theaterId && movieInfoDate){
-    		$("#movieInfoDate").val(movieInfoDate)
-    		// 주석 active활성화시 다른 활성화되어있던 active제거
-	    	$(".date-list p").removeClass("active");
-	    	// 주석 active활성화
-	    	$(obj).addClass("active");
-	    	
-	    	// 주석 controller로 보낼 key/value
-	    	data = {
-	    		"movieId" : movieId
-	    	}
-	    	listFlag = "timeList";
-	    	url = "/book/"+listFlag;
-	    	listStr = "시간";
-	    	
-    	}
-    	// 주석 date를 가져오기위함
-    	else if(theaterId){
-    		$("#theaterId").val(theaterId)
-	    	$(".theater-list p").removeClass("active");
-	    	$(obj).addClass("active");
-	    	data = {
-	    		"movieId" : movieId
-	    	}
-	    	listFlag = "dateList";
-	    	url = "/book/"+listFlag;
-	    	listStr = "날짜";
-	    	
-    	}
-    	// 주석 theater가져오기위함
-    	else {
-    		$("#movieId").val(movieId)
-	    	$(".movie-list p").removeClass("active");
-	    	$(obj).addClass("active");
-	    	data = {
-	    		"movieId" : movieId
-	    	}
-	    	listFlag = "theaterList";
-	    	url = "/book/"+listFlag;
-	    	listStr = "극장";
-    	}
-    	
-    	// 주석 controller로 data를 JSON형식의 String으로 보냄
-    	$.ajax({
-    		type : "POST",
-    		url  : url,
-    		data : JSON.stringify(data),
-    		dataType : "JSON",
-    		contentType : "application/json; charset=UTF-8",
-    		success : function(result){
-    			// 주석 Cotroller에서 modelAndview로 값을 받아왔을시
-    			// 카테고리 <p>태그 초기화
-  				$("#"+listFlag).empty();
-   				console.log(result.resultCode);
-   				console.log(listFlag);
-  				// 주석 ajax로 데이터를 보내고 controller에서 받은 list가 존재할때 reesultCode를 S000으로 보냄
-    			if(result.resultCode == "S000"){
-	    			switch(listFlag){
-	    			// 주석 극장리스트 출력
-	    			case "theaterList" :
-	    				$("#dateList").empty();
-	    				$("#timeList").empty();
-	    				// 주석 받아온 list의 속성값에 접근
-	   					for(var i in result.theaterList){
-	   					// 주석  list안의 요소를 하나씩 추가하면서 각 요소에 onclick이벤트 추가
-	    					$("#"+listFlag).append("<p onclick='infoList(this," + movieId + "," + result.theaterList[i].theaterId + ")'>" + result.theaterList[i].theaterLoc + "</p>")
-	    				}
-	   					break;
-	   				// 주석 날짜리스트 출력
-	    			case "dateList" : 
-	    				$("#timeList").empty();
-	    				for(var i in result.dateList){
-	    					$("#"+listFlag).append("<p onclick='infoList(this," + movieId + "," + theaterId + ","+ result.dateList[i].movieInfoDate + ")'>" + result.dateList[i].movieInfoDate + "</p>")
-	    				}
-	    				break;
-    				// 주석 시간리스트 출력
-	    			case "timeList" :
-	    				for(var i in result.timeList){
-	    					$("#"+listFlag).append("<p id='"+ result.timeList[i].movieInfoId +"' onclick='saveBooking(this)'>" + result.timeList[i].movieInfoTime + "</p>")
-	    				}
-	    				break;
-    				// 다른 값이 인입되면 예외처리로 아무런 행동도 하지 않고 종료
-	    			default : break;
-	    			}
-    			}
-    			// 주석 controller에서 보낸 list가 존재하지 않을경우
-    			else {
-    				$("#"+listFlag).append("<p>" + listStr + "정보 없음.</p>")
-    			}
-    		},
-    		error : function(e){
-    			console.log("error : ", e);
-    		} 
-    	})
-    	
+function infoList(obj, movieId, theaterId, movieInfoDate, movieInfoTime){
+    var data = new Object();
+    var url = "";
+    var listFlag = "";
+    var listStr = "";
+    lastFlag = false;
+    
+    if(theaterId && movieInfoDate){
+        $("#movieInfoDate").val(movieInfoDate);
+        $(".date-list p").removeClass("active");
+        $(obj).addClass("active");
+
+        data = {
+                "movieInfoDate" : movieInfoDate,
+            }
+        listFlag = "timeList";
+        url = "/book/"+listFlag;
+        listStr = "시간";
+    }
+    else if(theaterId){
+        $("#theaterId").val(theaterId);
+        $(".theater-list p").removeClass("active");
+        $(obj).addClass("active");
+        data = {
+            "theaterId" : theaterId
+        }
+        listFlag = "dateList";
+        url = "/book/"+listFlag;
+        listStr = "날짜";
+    }
+    else {
+        $("#movieId").val(movieId);
+        $(".movie-list p").removeClass("active");
+        $(obj).addClass("active");
+        data = {
+            "movieId" : movieId
+        }
+        listFlag = "theaterList";
+        url = "/book/"+listFlag;
+        listStr = "극장";
     }
     
-    function saveBooking(obj){
-    	// 선택한 obj의 id를 가져옴
-    	$("#movieInfoTime").val(obj.id);
-    	// 선택한 영화, 극장, 날짜, 시간 데이터 저장
-    	$("#timeList p").removeClass("active");
-    	$(obj).addClass("active");
-    	lastFlag = true;
-    }
+    $.ajax({
+        type : "POST",
+        url  : url,
+        data : JSON.stringify(data),
+        dataType : "JSON",
+        contentType : "application/json; charset=UTF-8",
+        success : function(result){
+            $("#" + listFlag).empty();
+            console.log(result.resultCode);
+            console.log(listFlag);
+            if(result.resultCode == "S000"){
+                switch(listFlag){
+                    case "theaterList" :
+                        $("#dateList").empty();
+                        $("#timeList").empty();
+                        for(var i in result.theaterList){
+                            $("#"+listFlag).append("<p onclick='infoList(this," + movieId + "," + result.theaterList[i].theaterId + ")'>" + result.theaterList[i].theaterLoc + "</p>")
+                        }
+                        break;
+                    case "dateList" : 
+                        $("#timeList").empty();
+                        for(var i in result.dateList){
+                        	var date = new Date(result.dateList[i].movieInfoDate);
+                        	var year = date.getFullYear();
+                        	var month = String(date.getMonth() + 1).padStart(2, '0'); // 월을 0부터 시작하므로 1을 더하고, 두 자리로 만듭니다.
+                        	var day = String(date.getDate()).padStart(2, '0'); // 날짜를 두 자리로 만듭니다.
+                        	var formattedDate = year + '-' + month + '-' + day;
+                        	$("#"+listFlag).append("<p onclick='infoList(this," + movieId + "," + theaterId + ",\"" + formattedDate + "\")'>" + formattedDate + "</p>");
+                        }
+                        break;
+                    case "timeList" :
+                        for(var i in result.timeList){
+                            var time = result.timeList[i].movieInfoTime;
+                            var formattedTime = time.substring(0, 5); // "HH:mm" 형식으로 자름
+                            $("#"+listFlag).append("<p id='"+ result.timeList[i].movieInfoId +"' onclick='saveBooking(this)'>" + formattedTime + "</p>");
+                        }
+                        break;
+                    default : break;
+                }
+            }
+            else {
+                $("#"+listFlag).append("<p>" + listStr + "정보 없음.</p>")
+            }
+        },
+        error : function(e){
+            console.log("error : ", e);
+        } 
+    })
+}
+var selectedTime = 0;   
+function saveBooking(obj){
+    // 선택한 obj의 텍스트 내용(시간)을 가져옴
+    selectedTime = $(obj).text();
+    // 선택한 시간을 movieInfoTime에 설정
+    $("#movieInfoTime").val(selectedTime);
+    // 선택한 영화, 극장, 날짜, 시간 데이터 저장
+    $("#timeList p").removeClass("active");
+    $(obj).addClass("active");
+    lastFlag = true;
+    console.log(selectedTime); // 선택한 시간을 콘솔에 출력
+}
     
     function insertBooking(){
 	    // 시간이 선택된 상태이면
-    	if(lastFlag){
-	    	if(confirm("예매를 진행하시겠습니까?")){
-		    	var	data = {
-			    	"movieInfoId" : $("#movieInfoId").val()
-			    }
-	    		$.ajax({
-	        		type : "POST",
-	        		url  : "/book/savebooking",
-	        		data : JSON.stringify(data),
-	        		dataType : "JSON",
-	        		contentType : "application/json; charset=UTF-8",
-	        		success : function(result){
-	        			if(confirm("예매가 완료되었습니다. 마이페이지로 이동하겠습니까?")){
-	        				location.href="/mypage/book";
-	        			}else {
-	        				location.href ="/main";
-	        			}
+    	    if(lastFlag){
+        if(confirm("예매를 진행하시겠습니까?")){
+            // MovieBooking 객체 생성
+            var movieBooking = {
+                "movieId": $("#movieId").val(),
+                "theaterId": $("#theaterId").val(),
+                "movieInfoDate": $("#movieInfoDate").val(),
+                "movieInfoTime": selectedTime
+            };
+            // movieInfoTime을 가져와서 추가
+            var userId = "${userId}";
+           //var movieInfoTimes = "${MovieInfo.movieInfoTime}";
+           // movieBooking.movieInfoTime = movieInfoTimes;
+    		$.ajax({
+        		type : "POST",
+        		url  : "/book/savebooking",
+        		data : JSON.stringify(movieBooking),
+        		dataType : "JSON",
+        		contentType : "application/json; charset=UTF-8",
+        		success : function(result){
+        			if(confirm("예매가 완료되었습니다. 마이페이지로 이동하겠습니까?")){
+        				location.href="/userinfo/"+userId;
+        			}else {
+        				location.href ="/main";
+        			}
 	        		}
 	    		})
     		}

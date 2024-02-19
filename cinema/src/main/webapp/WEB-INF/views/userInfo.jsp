@@ -26,7 +26,7 @@
         <div class="content">
             <div class="button-box">
                 <ul>
-                    <li><a href="#" class="button">캐시 충전</a></li>
+                    <li><a href="/adminPage" class="button">관리자 페이지</a></li>
                     <li><a href="#" class="button customer-service">고객 센터</a></li>
                 </ul>
             </div>
@@ -54,10 +54,10 @@
 			</c:if>
             <p>${user.userName} 님 안녕하세요</p>
         </div>
-        <div class="right-side">
+<!--         <div class="right-side">
             <p>충전된 캐시: $100</p>
             <button>충전하기</button>
-        </div>
+        </div> -->
     </div>
     
     
@@ -72,14 +72,13 @@
         <tr>
              <th style="font-size: 12px;">영화 이름</th>
              <th style="font-size: 12px;">극장 이름</th>
-             <th style="font-size: 12px;">영화 정보</th>
              <th style="font-size: 12px;">상영 날짜</th>
              <th style="font-size: 12px;">상영 시간</th>
         </tr>
     </thead>
     <tbody>
         <!-- 각 예약에 대한 정보를 순회하며 표시 -->
-          <c:forEach items="${booking}" var="book" varStatus="status">
+          <c:forEach items="${booking}" var="MovieBooking" varStatus="status">
             <c:choose>
                 <c:when test="${status.index % 2 == 0}">
                     <tr style="background-color: #f0f0f0;">
@@ -88,11 +87,10 @@
                     <tr style="background-color: #dddddd;">
                 </c:otherwise>
             </c:choose>
-                <td style="font-size: 12px;">${book.movieName}</td>
-                <td style="font-size: 12px;">${book.theaterName}</td>
-                <td style="font-size: 12px;">${book.movieInfo}</td>
-                <td style="font-size: 12px;">${fn:substring(book.movieInfoDate, 0, 10)}</td>
-                <td style="font-size: 12px;">${fn:substring(book.movieInfoTime, 11, 19)}</td>
+                <td style="font-size: 12px;">${MovieBooking.movieId}</td>
+                <td style="font-size: 12px;">${MovieBooking.theaterId}</td>
+                <td style="font-size: 12px;">${fn:substring(MovieBooking.movieInfoDate, 0, 10)}</td>
+                <td style="font-size: 12px;">${fn:substring(MovieBooking.movieInfoTime, 0, 5)}</td>
             </tr>
         </c:forEach>
     </tbody>

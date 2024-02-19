@@ -20,7 +20,7 @@
 		<result property="theaterLoc" column="theater_loc"/>
 	</resultMap>
 	<select id="getTheaterBymovieId" parameterType="_int" resultMap="theaterResult">
-		SELECT theater_id,
+		SELECT distinct theater_id,
 			   movie_id,
 			   theater_loc
 		FROM theater
@@ -29,28 +29,24 @@
 		
 	
 	<select id="getdateBymovieId" parameterType="_int" resultType="com.spring.cinema.model.MovieInfo">
-		SELECT distinct theater_id AS theaterId,
-				date_format(movie_info_date, '%Y-%m-%d') AS movieInfoDate,
-				movie_id AS movieId
+		SELECT distinct *
 		FROM movie_info
-		WHERE movie_id = #{movieId}
+		WHERE theater_id = #{theaterId}
 	</select>
 	
-	<select id="gettimeBymovieId" parameterType="_int" resultType="com.spring.cinema.model.MovieInfo">
-		SELECT distinct theater_id AS theaterId,
-				date_format(movie_info_time, '%H:%i') AS movieInfoTime,
-				movie_id AS movieId
-		FROM movie_info
-		WHERE movie_id = #{movieId}
+	<select id="gettimeBymovieId" parameterType="java.sql.Date" resultType="MovieInfo">
+		SELECT * 
+		FROM movie_info 
+		WHERE movie_info_date = #{movieInfoDate}
 	</select>
 	
 	<insert id="savebooking" parameterType="com.spring.cinema.model.MovieBooking">
-		INSERT INTO movie_booking (user_id, movie_info_id)
-		VALUES (#{userId},#{movieInfoId})
+		INSERT INTO movie_booking (user_id,movie_id,theater_id, movie_info_date, movie_info_time)
+		VALUES (#{userId},#{movieId},#{theaterId},#{movieInfoDate},#{movieInfoTime})
 	</insert>
 	
 		<!-- 아이디로 예약조회 -->
-	<select id="getBookByuserId" parameterType="string" resultType="com.spring.cinema.model.MovieBooking">
+	<select id="getBookByuserId" parameterType="string" resultType="movieBooking">
 				SELECT *
 				FROM movie_booking
 				 WHERE user_id = #{userId}

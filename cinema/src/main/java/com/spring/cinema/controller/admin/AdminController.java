@@ -47,9 +47,8 @@ public class AdminController {
 	@RequestMapping(value = "/insertMoive", method = RequestMethod.POST)
 	public String insertMoive(@ModelAttribute Movie movie, Model model, RedirectAttributes redirectAttributes ) {
 		adminService.insertMovie(movie);
-
 		addRedirectMessage(redirectAttributes, "영화 정보가 추가되었습니다.");
-		
+		System.out.println("추가 성공");
 		return "redirect:/adminPage";
 	}
 	

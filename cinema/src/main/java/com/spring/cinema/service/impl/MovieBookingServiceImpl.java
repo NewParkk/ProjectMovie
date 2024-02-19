@@ -1,5 +1,8 @@
 package com.spring.cinema.service.impl;
 
+
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.cinema.mapper.MovieBookingMapper;
 import com.spring.cinema.model.Movie;
+import com.spring.cinema.model.MovieBooking;
 import com.spring.cinema.model.MovieInfo;
 import com.spring.cinema.model.Theater;
 import com.spring.cinema.service.user.MovieBookingService;
@@ -35,21 +39,23 @@ public class MovieBookingServiceImpl implements MovieBookingService{
 
 
 	@Override
-	public List<MovieInfo> getdateBymovieId(int movieId) {
-		return movieBookingMapper.getdateBymovieId(movieId);
+	public List<MovieInfo> getdateBymovieId(int theaterId) {
+		return movieBookingMapper.getdateBymovieId(theaterId);
 	}
 
 
 	@Override
-	public List<MovieInfo> gettimeBymovieId(int movieId) {
-		return movieBookingMapper.gettimeBymovieId(movieId);
+	public List<MovieInfo> gettimeBymovieId(Date movieInfoDate) {
+		System.out.println(movieInfoDate);
+		return movieBookingMapper.gettimeBymovieId(movieInfoDate);
 	}
 
 
 	@Override
-	public String savebooking(MovieInfo bookInfo) {
+	public String savebooking(MovieBooking bookInfo) {
 		String resultCode = "F000";
 		int result = movieBookingMapper.savebooking(bookInfo);
+		System.out.println(result);
 		if (result > 0) {
 			resultCode = "S000";
 		}
@@ -57,6 +63,8 @@ public class MovieBookingServiceImpl implements MovieBookingService{
 		return resultCode;
 	}
 	
-	
-	
+	@Override
+	public ArrayList<MovieBooking> getBookByuserId(String userId){
+	return movieBookingMapper.getBookByuserId(userId);
+	}
 }

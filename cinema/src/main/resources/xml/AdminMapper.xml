@@ -27,8 +27,8 @@
 	<insert id="insertMovie"
 			parameterType="com.spring.cinema.model.Movie">
 	 	INSERT INTO 
- 			movie (movie_name, movie_story, movie_date, director_name, movie_url) 
- 			VALUES (#{movieName}, #{movieStory}, #{movieDate}, #{directorName}, #{movieUrl})
+ 			movie (movie_name, movie_story, movie_date, director_name, movie_img_url) 
+ 			VALUES (#{movieName}, #{movieStory}, #{movieDate}, #{directorName}, #{movieImgUrl})
 	</insert>
   
   	<delete id="deleteMovie"

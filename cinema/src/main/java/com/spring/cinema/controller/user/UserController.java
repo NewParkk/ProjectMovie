@@ -23,6 +23,7 @@ import com.spring.cinema.model.User;
 import com.spring.cinema.service.impl.MovieServiceImpl;
 import com.spring.cinema.service.impl.ReviewServiceImpl;
 import com.spring.cinema.service.impl.UserServiceImpl;
+import com.spring.cinema.service.user.MovieBookingService;
 import com.spring.cinema.service.user.MovieInfoService;
 import com.spring.cinema.service.user.MovieService;
 import com.spring.cinema.service.user.ReviewService;
@@ -32,13 +33,16 @@ import com.spring.cinema.service.user.ReviewService;
 public class UserController {
 	
 	private final UserServiceImpl userServiceimpl;
+	private final MovieBookingService movieBookingService;
 	private final ReviewServiceImpl reviewServiceimpl;
 	
 	//서버 매핑
 	@Autowired
 	public UserController(UserServiceImpl userServiceimpl, 
+						MovieBookingService movieBookingService,
 						ReviewServiceImpl reviewServiceimpl) {
 		this.userServiceimpl = userServiceimpl;
+		this.movieBookingService = movieBookingService;
 		this.reviewServiceimpl = reviewServiceimpl;
 		
 
@@ -117,11 +121,12 @@ public class UserController {
 			//유저 정보 받기
 			User user = userServiceimpl.getUserByuserId(userId);
 			//예약 정보 받기
-//			ArrayList<MovieBooking> booking = bookServiceimpl.getBookByuserId(userId);
+			ArrayList<MovieBooking> booking = movieBookingService.getBookByuserId(userId);
+			System.out.println(booking);
 			ArrayList<Review> reviewsList = reviewServiceimpl.getreviewById(userId);
 			model.addAttribute("user", user);
 			//예약 목록에 영화 정보 리스트를 어떻게 출력할것인가
-//			model.addAttribute("booking",booking);
+			model.addAttribute("booking",booking);
 			model.addAttribute("reviewsList",reviewsList);
 			
 			return "userInfo";

@@ -92,6 +92,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     public String handleException(Exception e, Model model) {
+    	e.printStackTrace();
         model.addAttribute("exceptionMessage", "예외가 발생하였습니다.");
         return "error/500";
     }

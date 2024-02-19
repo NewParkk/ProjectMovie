@@ -22,9 +22,9 @@
 	
 	<insert id="movieRegistration"
 		parameterType="com.spring.cinema.model.Movie">
-		INSERT INTO movie (movie_name, movie_story, movie_date, movie_img_url)
+		INSERT INTO movie (movie_name, movie_story, movie_date, movie_img_url,director_name)
 		VALUES (#{movieName}, #{movieStory},
-		#{movieDate},#{movieImgUrl}
+		#{movieDate},#{movieImgUrl},#{directorName}
 		)
 	</insert>
 </mapper>

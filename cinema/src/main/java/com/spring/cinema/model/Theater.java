@@ -1,14 +1,16 @@
 package com.spring.cinema.model;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class Theater {
-    private final int theaterId;
-    private final int movieId;
-    private final String theaterLoc;
-    private final int theaterLocDetail;
+    private  int theaterId;
+    private  int movieId;
+    private  String theaterLoc;
+    private  int theaterLocDetail;
 }

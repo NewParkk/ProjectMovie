@@ -16,7 +16,7 @@
         #main {
             text-align: center;
             margin : 0 auto;
-        	margin-top : 100px;
+        	margin-top : 150px;
         }
 
         .container {
@@ -27,8 +27,15 @@
         }
 
         .form-group {
+        	width:500px;
             margin-bottom: 20px;
         }
+       .form-group1 {
+		    width: 200px;
+		    margin: 0 auto; /* 좌우 마진을 auto로 설정하여 수평 가운데 정렬 */
+		    margin-bottom: 20px;
+		    text-align: center;
+		}
 
         label {
             font-size: 16px;
@@ -45,6 +52,7 @@
             font-size: 16px;
             padding: 10px;
         }
+
     </style>
 </head>
 <body>
@@ -57,8 +65,8 @@
         <div id="registration-form" class="container">
             <form action="/insertMoive" method="POST">
             	<div class="form-group">
-                    <label for="movierUrl">포스터</label>
-                    <input type="text" id="movierUrl" name="movierUrl">
+                    <label for="movieImgUrl">포스터</label>
+                    <input type="text" id="movieImgUrl" name="movieImgUrl">
                 </div>
                 <div class="form-group">
                     <label for="movieName">영화 제목</label>
@@ -70,9 +78,9 @@
                 </div>
                 <div class="form-group">
                     <label for="movieStory">영화 줄거리</label>
-                    <input type="text" id="movieStory" name="movieStory" value="${movie.movieStory}" required>
+                    <textarea style="width: 500px; height: 300px;" id="movieStory" name="movieStory" value="${movie.movieStory}" required></textarea>
                 </div>
-                <div class="form-group">
+                <div class="form-group1">
                     <label for="movieDate">개봉일</label>
                     <input type="date" id="movieDate" name="movieDate" required>
                 </div>

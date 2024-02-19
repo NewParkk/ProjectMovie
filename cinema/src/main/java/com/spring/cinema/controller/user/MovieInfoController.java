@@ -52,39 +52,32 @@ public class MovieInfoController {
         return "movielist"; 
     }
     
-	//영화 등록 페이지
-	@PostMapping(value ="/insertmovie")
-	public String movieRegistration( 
-									@RequestParam String movieName,
-									@RequestParam String movieStory,
-									@RequestParam String movieDate,
-									@RequestParam String movieImgUrl){
-	
-//		Movie movie = null;
-//		System.out.println(movie);
-//		System.out.println(movieName);
-//		System.out.println(movieStory);
-//		System.out.println(movieDate);
-//		System.out.println(movieImgUrl);
-//		
-//		movie.setMovieName(movieName);
-//		System.out.println(movie.getMovieName());
-//		movie.setMovieStory(movieStory);
-//		movie.setMovieDate(movieDate);
-//		movie.setMovieImgUrl(movieImgUrl);
-		
-		boolean result = movieServiceimpl.movieRegistration(movieName,
-														movieStory,
-														movieDate,
-														movieImgUrl);
-		System.out.println(result);
-		if (result) {
-			return "redirect:/movies";
-		} else {
-			return "redirect:/register?error=true";
-		}
-
-	}
+	/*
+	 * //영화 등록 페이지
+	 * 
+	 * @PostMapping(value ="/insertmovie") public String movieRegistration(
+	 * 
+	 * @RequestParam String movieName,
+	 * 
+	 * @RequestParam String movieStory,
+	 * 
+	 * @RequestParam String movieDate,
+	 * 
+	 * @RequestParam String movieImgUrl){
+	 * 
+	 * // Movie movie = null; // System.out.println(movie); //
+	 * System.out.println(movieName); // System.out.println(movieStory); //
+	 * System.out.println(movieDate); // System.out.println(movieImgUrl); // //
+	 * movie.setMovieName(movieName); // System.out.println(movie.getMovieName());
+	 * // movie.setMovieStory(movieStory); // movie.setMovieDate(movieDate); //
+	 * movie.setMovieImgUrl(movieImgUrl);
+	 * 
+	 * boolean result = movieServiceimpl.movieRegistration(movieName, movieStory,
+	 * movieDate, movieImgUrl); System.out.println(result); if (result) { return
+	 * "redirect:/movies"; } else { return "redirect:/register?error=true"; }
+	 * 
+	 * }
+	 */
 	
 	@GetMapping("/moviedetail")
 	public String movieDetail(@RequestParam String movieName, Model model) {

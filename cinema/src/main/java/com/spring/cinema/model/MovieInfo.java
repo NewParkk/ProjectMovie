@@ -1,6 +1,10 @@
 package com.spring.cinema.model;
 
 
+
+import java.sql.Date;
+import java.sql.Time;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,11 +13,9 @@ import lombok.NoArgsConstructor;
 public class MovieInfo {
 	private int movieInfoId;
 	private int theaterId;
-	private String movieInfoDate;
-	private String movieInfoTime;
+	private Date movieInfoDate;
+	private Time movieInfoTime;
 	private int movieId;
-	private String userId;
-	 
 	
 	
 }
