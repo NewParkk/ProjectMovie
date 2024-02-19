@@ -108,7 +108,6 @@ public class MovieBookingController {
 	@ResponseBody
 	public ModelAndView savebooking(@RequestBody MovieBooking bookInfo,HttpSession session) throws ParseException {
 		String resultCode = "F000";
-		session.getAttribute("userId");
 		bookInfo.setUserId((String) session.getAttribute("userId"));
 
 		System.out.println(bookInfo);

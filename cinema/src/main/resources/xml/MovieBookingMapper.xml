@@ -35,7 +35,7 @@
 	</select>
 	
 	<select id="gettimeBymovieId" parameterType="java.sql.Date" resultType="MovieInfo">
-		SELECT * 
+		SELECT distinct * 
 		FROM movie_info 
 		WHERE movie_info_date = #{movieInfoDate}
 	</select>

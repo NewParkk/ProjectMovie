@@ -12,5 +12,4 @@ public class Theater {
     private  int theaterId;
     private  int movieId;
     private  String theaterLoc;
-    private  int theaterLocDetail;
 }
