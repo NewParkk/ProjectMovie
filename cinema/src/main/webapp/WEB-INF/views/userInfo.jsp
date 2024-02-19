@@ -78,7 +78,7 @@
     </thead>
     <tbody>
         <!-- 각 예약에 대한 정보를 순회하며 표시 -->
-          <c:forEach items="${booking}" var="MovieBooking" varStatus="status">
+          <c:forEach items="${booking}" var="BookingInfo" varStatus="status">
             <c:choose>
                 <c:when test="${status.index % 2 == 0}">
                     <tr style="background-color: #f0f0f0;">
@@ -87,10 +87,10 @@
                     <tr style="background-color: #dddddd;">
                 </c:otherwise>
             </c:choose>
-                <td style="font-size: 12px;">${MovieBooking.movieId}</td>
-                <td style="font-size: 12px;">${MovieBooking.theaterId}</td>
-                <td style="font-size: 12px;">${fn:substring(MovieBooking.movieInfoDate, 0, 10)}</td>
-                <td style="font-size: 12px;">${fn:substring(MovieBooking.movieInfoTime, 0, 5)}</td>
+                <td style="font-size: 12px;">${BookingInfo.movieName}</td>
+                <td style="font-size: 12px;">${BookingInfo.theaterLoc}</td>
+                <td style="font-size: 12px;">${fn:substring(BookingInfo.movieInfoDate, 0, 10)}</td>
+                <td style="font-size: 12px;">${fn:substring(BookingInfo.movieInfoTime, 0, 5)}</td>
             </tr>
         </c:forEach>
     </tbody>

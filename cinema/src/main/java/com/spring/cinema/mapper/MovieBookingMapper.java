@@ -9,6 +9,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.spring.cinema.model.BookingInfo;
 import com.spring.cinema.model.Movie;
 import com.spring.cinema.model.MovieBooking;
 import com.spring.cinema.model.MovieInfo;
@@ -27,7 +28,7 @@ public interface MovieBookingMapper {
 
 	int savebooking(MovieBooking bookInfo);
 
-	ArrayList<MovieBooking> getBookByuserId(@Param(value = "userId")String userId);
+	ArrayList<BookingInfo> getBookByuserId(@Param(value = "userId")String userId);
 	
 	
 }

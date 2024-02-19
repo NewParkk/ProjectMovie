@@ -46,9 +46,11 @@
 	</insert>
 	
 		<!-- 아이디로 예약조회 -->
-	<select id="getBookByuserId" parameterType="string" resultType="movieBooking">
-				SELECT *
-				FROM movie_booking
-				 WHERE user_id = #{userId}
-	</select>
+	<select id="getBookByuserId" parameterType="String" resultType="com.spring.cinema.model.BookingInfo">
+    SELECT theater.theater_loc, movie.movie_name, movie_booking.movie_info_date, movie_booking.movie_info_time
+    FROM movie_booking
+    JOIN theater ON movie_booking.theater_id = theater.theater_id
+    JOIN movie ON movie_booking.movie_id = movie.movie_id
+    WHERE movie_booking.user_id = #{userId}
+</select>
 </mapper>

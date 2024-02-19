@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.cinema.mapper.ReviewMapper;
+import com.spring.cinema.model.BookingInfo;
 import com.spring.cinema.model.MovieBooking;
 import com.spring.cinema.model.Review;
 import com.spring.cinema.model.User;
@@ -121,7 +122,7 @@ public class UserController {
 			//유저 정보 받기
 			User user = userServiceimpl.getUserByuserId(userId);
 			//예약 정보 받기
-			ArrayList<MovieBooking> booking = movieBookingService.getBookByuserId(userId);
+			ArrayList<BookingInfo> booking = movieBookingService.getBookByuserId(userId);
 			System.out.println(booking);
 			ArrayList<Review> reviewsList = reviewServiceimpl.getreviewById(userId);
 			model.addAttribute("user", user);
