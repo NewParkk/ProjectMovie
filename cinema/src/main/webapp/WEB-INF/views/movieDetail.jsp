@@ -42,14 +42,14 @@
             margin-top: 100px;
         }
 
-        .movie-info-section, .comments-section, .story-section {
+        .movie-info-section, .review-section, .story-section {
             margin-bottom: 20px;
             width: 600px;
             text-align: center;
             padding-top: 20px;
         }
 
-        .comments-section, .story-section {
+        .review-section, .story-section {
             border-top: 2px solid #ccc;
         }
 
@@ -57,7 +57,7 @@
             width: 500px;
         }
 
-        .comment {
+        .review {
             margin-bottom: 20px;
             padding: 10px;
             border: 1px solid #ccc;
@@ -66,19 +66,22 @@
             text-align: left;
         }
 
-        .comment p {
+        .review p {
             margin: 0;
         }
 
-        .comment small {
+        .review small {
             color: #666;
         }
 
         .modal-dialog {
-            max-width: 500px;
+            width:300px;
+            height:300px;
+            margin: 0 auto;
+            text-align: center;
         }
 
-        .movie-info h2, .story-section h2, .comments-section h2 {
+        .movie-info h2, .story-section h2, .review-section h2 {
             margin-top: 0;
             margin-bottom: 10px;
             color: #333;
@@ -86,20 +89,58 @@
             padding-top: 10px;
         }
 
-        #PostCommentForm textarea {
+        #MovieCommentForm textarea {
             width: 400px;
         }
 
-        .comment-controls {
+        .review-controls {
             display: flex;
             text-align: right;
         }
 
-        .comment-controls button {
+        .review-controls button {
             margin-top: 5px;
             margin-right: 10px;
         }
-        
+
+		
+		/* 모달 닫기 버튼 스타일 */
+		.close {
+		  color: #aaa;
+		  float: right;
+		  font-size: 28px;
+		  font-weight: bold;
+		}
+		
+		.close:hover,
+		.close:focus {
+		  color: black;
+		  text-decoration: none;
+		  cursor: pointer;
+		}
+		.modal-container {
+         display: none;
+         position: fixed;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         background-color: rgba(255, 255, 255, 1); 
+         padding: 20px;
+         border: 2px solid black;
+         border-radius: 5px;
+         z-index: 9999;
+         color: black; 
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+		}
+		
+		.modal-content {
+		text-align: center;
+
+		}
+		
+		.modal-button {
+		          margin-top: 20px;
+		}
     </style>
 </head>
 <body>
@@ -126,16 +167,16 @@
     </div>
 
     <!-- 댓글 섹션 -->
-    <div class="comments-section">
+    <div class="review-section">
         <h2>댓글</h2>
         <c:forEach items="${reviewList}" var="review">
-            <div class="comment">
+            <div class="review">
                 <p>${review.content}</p>
                 <small>작성자: ${review.userId}, 작성일: ${review.createDate}</small>
                 <c:if test="${review.userId == sessionScope.userId or sessionScope.userAdmin}">
                     <!-- 댓글 수정 및 삭제 버튼 -->
-                    <div class="comment-controls">
-                       <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editCommentModal-${review.reviewId}">수정</button>
+                    <div class="review-controls">
+                       <button id = "updateButton"class="btn btn-primary btn-sm" data-review-id="${review.reviewId}" data-movie-name="${review.movieName}" data-user-id = "${review.userId}">수정</button>
                         <button onclick="location.href='${pageContext.request.contextPath}/delete/${review.reviewId}?movieName=${review.movieName}'" class="btn btn-danger btn-sm">삭제</button>
                     </div>
                 </c:if>
@@ -143,38 +184,19 @@
         </c:forEach>
 
         <!-- 댓글 작성 폼 -->
-        <form action="${pageContext.request.contextPath}/comments/add" method="post" class="mt-3 mb-3" id="PostCommentForm" onsubmit="return validatePostCommentForm()" style="display: flex; justify-content: center; align-items: center;">
-            <textarea name="content" class="form-control" style="height: 100px; margin-right: 10px;" placeholder="댓글을 입력하세요"></textarea>
+        <form action="${pageContext.request.contextPath}/review/add" method="post" class="mt-3 mb-3" id="MovieCommentForm"  style="display: flex; justify-content: center; align-items: center;">
+            <textarea name="content" class="form-control" style="height: 100px; margin-right: 10px;" placeholder="댓글을 입력하세요" required></textarea>
             <input type="hidden" name="userId" value="${sessionScope.userId}">
             <input type="hidden" name="movieName" value="${movie.movieName}">
             <button type="submit" class="btn btn-primary">댓글 작성</button>
         </form>
         <!-- 댓글 수정 모달 -->
-        <c:forEach items="${reviewList}" var="review">
-            <c:if test="${review.userId == sessionScope.userId or sessionScope.userAdmin}">
-                <div class="modal fade" id="editCommentModal-${review.reviewId}" tabindex="-1" role="dialog" aria-labelledby="editCommentModalLabel-${review.reviewId}" aria-hidden="true">
-			    <div class="modal-dialog modal-dialog-centered" role="document">
-			        <div class="modal-content">
-			            <div class="modal-header">
-			                <h5 class="modal-title" id="editCommentModalLabel-${review.reviewId}">댓글 수정</h5>
-			                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			                    <span aria-hidden="true">&times;</span>
-			                </button>
-			            </div>
-			            <div class="modal-body">
-			                <form id="editCommentForm-${review.reviewId}" onsubmit="updateComment(${review.reviewId}, '${movie.movieName}'); return false;">
-			                    <textarea id="commentContent-${review.reviewId}" class="form-control">${review.content}</textarea>
-			                    <div class="mt-2">
-			                        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-			                        <button type="submit" class="btn btn-primary">확인</button>
-			                    </div>
-			                </form>
-			            </div>
-			        </div>
-			    </div>
-			</div>
-            </c:if>
-        </c:forEach>
+          <div id="modalContainer" class="modal-container">
+        <div class="modal-content">
+            <textarea name="updatereview" class = "form-control" style = "heigth: 100px;"placeholder="수정할 댓글을 입력하세요" required></textarea>
+            <button id="confirmUpdateButton" class="modal-button">확인</button>
+            <button id="cancelUpdateButton" class="modal-button">취소</button>
+        </div>
     </div>
 
     <!-- Bootstrap 및 jQuery 스크립트 -->
@@ -183,32 +205,64 @@
 
 <!-- JavaScript 함수 -->
 <script>
-    function updateComment(reviewId, movieName) {
-        var content = document.getElementById('commentContent-' + reviewId).value.trim();
-        if (content !== '') {
-            // AJAX를 이용하여 서버에 데이터 전송
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '${pageContext.request.contextPath}/reviewUpdate', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        // 업데이트 성공 시 모달 닫기
-                        $('#editCommentModal-' + reviewId).modal('hide');
-                        // 페이지 새로고침 또는 필요한 작업 수행
-                        location.reload(); // 예시로 페이지를 새로고침하는 방식 사용
-                    } else {
-                        // 업데이트 실패 처리
-                        console.error('댓글 업데이트 실패');
-                    }
-                }
-            };
-            var params = 'reviewId=' + encodeURIComponent(reviewId) + '&movieName=' + encodeURIComponent(movieName) + '&content=' + encodeURIComponent(content);
-            xhr.send(params);
-        } else {
-            alert('댓글을 입력하세요.');
+    var updateButtons = document.querySelectorAll("#updateButton");
+    var cancelButton = document.getElementById("cancelUpdateButton");
+    var confirmButton = document.getElementById("confirmUpdateButton");
+    var modalContainer = document.getElementById("modalContainer");
+
+    updateButtons.forEach(function(button) {
+        button.onclick = function() {
+            // 모달 창 열기
+            modalContainer.style.display = "block";
+
+            // 해당 버튼에 연결된 데이터 가져오기
+            var reviewId = button.getAttribute('data-review-id');
+            var userId = button.getAttribute('data-user-id');
+            var movieName = button.getAttribute('data-movie-name');
+
+            // 리뷰 수정 폼에 데이터 설정
+            modalContainer.setAttribute('data-review-id', reviewId);
+            modalContainer.setAttribute('data-user-id', userId);
+            modalContainer.setAttribute('data-movie-name', movieName);
         }
-    }
+    });
+
+    cancelButton.onclick = function() {
+        // 모달 창 닫기
+        modalContainer.style.display = "none";
+    };
+
+    confirmButton.onclick = function() {
+        var reviewId = modalContainer.getAttribute('data-review-id');
+        var content = document.querySelector('textarea[name="updatereview"]').value.trim();
+        var userId = modalContainer.getAttribute('data-user-id');
+        var movieName = modalContainer.getAttribute('data-movie-name');
+
+        var review = {
+            reviewId: reviewId,
+            content: content,
+            userId: userId,
+            movieName: movieName
+        };
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/update', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    console.log('리뷰 업데이트 성공');                
+                    modalContainer.style.display = "none";
+                    window.location.reload()
+                    // 여기에 필요한 처리 추가
+                } else {
+                    console.error('리뷰 업데이트 실패');
+                    // 여기에 필요한 처리 추가
+                }
+            }
+        };
+        xhr.send(JSON.stringify(review));
+    };
 </script>
 </body>
 </html>

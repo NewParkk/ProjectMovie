@@ -46,4 +46,15 @@ public class ReviewServiceImpl implements ReviewService{
 		return false; 
 	}
 	}
+
+	public boolean updateReview(Review review) {
+		try {
+		reviewMapper.updateReview(review);
+		return true; 
+	} catch (Exception e) {
+		e.printStackTrace();
+		return false; 
+	}
+	
+	}
 }

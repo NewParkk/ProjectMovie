@@ -18,4 +18,6 @@ public interface ReviewMapper {
 
 	int deleteReview(@Param("reviewId")Integer reviewId);
 
+	int updateReview(Review review);
+
 }
