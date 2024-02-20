@@ -1,9 +1,7 @@
 package com.spring.cinema.mapper;
 
 
-import java.sql.Date;
 import java.util.ArrayList;
-
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -21,9 +19,9 @@ public interface MovieBookingMapper {
 
 	List<Theater> getTheaterBymovieId(@Param(value = "movieId")int movieId);
 
-	List<MovieInfo> getdateBymovieId(@Param(value = "theaterId")int theaterId);
+	List<MovieInfo> getdateBymovieId(MovieInfo movieInfo);
 
-	List<MovieInfo> gettimeBymovieId(@Param(value = "movieInfoDate")Date movieInfoDate);
+	List<MovieInfo> gettimeBymovieId(MovieInfo movieInfo);
 
 	int savebooking(MovieBooking bookInfo);
 

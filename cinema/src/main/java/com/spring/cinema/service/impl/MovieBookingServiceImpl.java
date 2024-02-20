@@ -39,15 +39,15 @@ public class MovieBookingServiceImpl implements MovieBookingService{
 
 
 	@Override
-	public List<MovieInfo> getdateBymovieId(int theaterId) {
-		return movieBookingMapper.getdateBymovieId(theaterId);
+	public List<MovieInfo> getdateBymovieId(MovieInfo movieInfo) {
+		return movieBookingMapper.getdateBymovieId(movieInfo);
 	}
 
 
 	@Override
-	public List<MovieInfo> gettimeBymovieId(Date movieInfoDate) {
-		System.out.println(movieInfoDate);
-		return movieBookingMapper.gettimeBymovieId(movieInfoDate);
+	public List<MovieInfo> gettimeBymovieId(MovieInfo movieInfo) {
+		System.out.println(movieBookingMapper.gettimeBymovieId(movieInfo));
+		return movieBookingMapper.gettimeBymovieId(movieInfo);
 	}
 
 

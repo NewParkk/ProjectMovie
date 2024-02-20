@@ -20,24 +20,31 @@
 		<result property="theaterLoc" column="theater_loc"/>
 	</resultMap>
 	<select id="getTheaterBymovieId" parameterType="_int" resultMap="theaterResult">
-		SELECT distinct theater_id,
-			   movie_id,
-			   theater_loc
-		FROM theater
-		WHERE movie_id = #{movieId}
+		SELECT DISTINCT THEATER_ID,
+			   MOVIE_ID,
+			   THEATER_LOC
+		FROM THEATER
+		WHERE MOVIE_ID = #{movieId}
 	</select>
 		
 	
-	<select id="getdateBymovieId" parameterType="_int" resultType="com.spring.cinema.model.MovieInfo">
-		SELECT distinct *
-		FROM movie_info
-		WHERE theater_id = #{theaterId}
+	<select id="getdateBymovieId" parameterType="com.spring.cinema.model.MovieInfo" resultType="com.spring.cinema.model.MovieInfo">
+		SELECT DISTINCT MOVIE_INFO_DATE,
+						THEATER_ID,
+						MOVIE_ID					
+		FROM MOVIE_INFO
+		WHERE THEATER_ID = #{theaterId}
+		  AND MOVIE_ID = #{movieId}
 	</select>
 	
-	<select id="gettimeBymovieId" parameterType="java.sql.Date" resultType="MovieInfo">
-		SELECT * 
-		FROM movie_info 
-		WHERE movie_info_date = #{movieInfoDate}
+	<select id="gettimeBymovieId" parameterType="com.spring.cinema.model.MovieInfo" resultType="com.spring.cinema.model.MovieInfo">
+		SELECT MOVIE_INFO_TIME,
+		        THEATER_ID,
+				MOVIE_ID
+		FROM MOVIE_INFO
+		WHERE MOVIE_INFO_DATE = #{movieInfoDate}
+		  AND THEATER_ID = #{theaterId}
+		  AND MOVIE_ID = #{movieId}
 	</select>
 	
 	<insert id="savebooking" parameterType="com.spring.cinema.model.MovieBooking">
