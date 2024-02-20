@@ -74,6 +74,7 @@ public class UserController {
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
+		System.out.println("로그아웃");
 		return "redirect:/main";
 	}
 
@@ -147,11 +148,12 @@ public class UserController {
 		
 	//회원 정보 삭제
 	@GetMapping(value="/userDelete/{userId}")
-	public String userDelete(@PathVariable String userId) {
+	public String userDelete(@PathVariable String userId,HttpSession session) {
 
 		boolean result = userServiceimpl.userDelete(userId);
 		if(result) {
 			System.out.println(result);
+			session.invalidate();
 			return "redirect:/login";
 		}else {
 		return "redirect:/error";
