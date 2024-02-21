@@ -17,4 +17,8 @@ public interface TheaterMapper {
    List<MovieInfo> getAvailableTimesByTheaterIdAndMovieIdAndDate(int theaterId, int movieId, String date);
 
    int saveBooking(MovieInfo bookInfo);
+
+   Theater selectOne(String theaterLoc);
+
+    List<Theater> selectList();
 }

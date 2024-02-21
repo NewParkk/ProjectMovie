@@ -10,7 +10,7 @@
 		<typeAlias type="com.spring.cinema.model.Review" alias="Review"/>
 		<typeAlias type="com.spring.cinema.model.MovieInfo" alias="MovieInfo"/>
 		<typeAlias alias="movieBooking" type="com.spring.cinema.model.MovieBooking"/>
-		<typeAlias alias="theater" type="com.spring.cinema.model.Theater"/>
+		<typeAlias alias="Theater" type="com.spring.cinema.model.Theater"/>
 	</typeAliases>
 
 

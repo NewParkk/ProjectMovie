@@ -1,4 +1,155 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<link rel="stylesheet" type="text/css" media="all" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5675f8f4dffbfd2b726b7b6393fd2b78"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        // 페이지가 로드될 때 showAllTheaters() 함수 호출
+        showAllTheaters();
+        // 이전 맵 변수 선언
+        var map = null;
+
+        // 페이지 로드 시 전국의 영화관을 표시
+        function showAllTheaters() {
+            $.ajax({
+                url: "map2",
+                success: function(json_array) {
+                    $('#result').html("전국의 영화관");
+                    var mapContainer = document.getElementById('map');
+                    var mapOption = {
+                        center: new kakao.maps.LatLng(json_array[0].lat, json_array[0].lon),
+                        level: 13
+                    };
+
+                    // 이전 맵 삭제
+                    if (map != null) {
+                        map = null;
+                    }
+
+                    // 새로운 맵 생성
+                    map = new kakao.maps.Map(mapContainer, mapOption);
+
+                    var positions = [];
+                    $(json_array).each(function(i, json) {
+                        positions.push({
+                            title: json.location,
+                            latlng: new kakao.maps.LatLng(json.lat, json.lon)
+                        });
+                    });
+
+
+                    for (let i = 0; i < positions.length; i++) {
+                        let marker = new kakao.maps.Marker({
+                            map: map,
+                            position: positions[i].latlng,
+                            title: positions[i].title,
+                        });
+                    }
+                }
+            });
+        }
+
+        // 전체보기 버튼 클릭 시 전체 지도 다시 표시
+        $('#all').click(function() {
+            showAllTheaters();
+        });
+
+        // 각 버튼 클릭 시 해당 지역의 영화관 표시
+        $('#b1, #b2, #b3, #b4, #b5, #b6').click(function() {
+            var location = $(this).text(); // 버튼의 텍스트를 지역명으로 사용
+            var adress = $(this).val(); 
+            $.ajax({
+                url: "map1",
+                data: {
+                    location: location
+                },
+                success: function(json) {
+                    $('#result').html(json.theaterLoc);
+                    var mapContainer = document.getElementById('map');
+                    var mapOption = {
+                        center: new kakao.maps.LatLng(json.lat, json.lon),
+                        level: 3
+                    };
+
+                    // 이전 맵 삭제
+                    if (map != null) {
+                        map = null;
+                    }
+
+                    // 새로운 맵 생성
+                    map = new kakao.maps.Map(mapContainer, mapOption);
+
+                    var markerPosition = new kakao.maps.LatLng(json.lat, json.lon);
+                    var marker = new kakao.maps.Marker({
+                        position: markerPosition
+                    });
+
+                    marker.setMap(map);
+                    
+                    var infowindow = new kakao.maps.InfoWindow({
+                        content: '<div style="padding:5px;">' + adress + '</div>', // 버튼의 value 값을 마커 위에 출력
+                    });
+
+                    kakao.maps.event.addListener(marker, 'click', function() {
+                        infowindow.open(map, marker);
+                    });
+                }
+            });
+        });
+    });
+
+</script>
+<style>
+    .button-group {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .button-group button {
+        margin: 0 5px;
+        background: red;
+    }
+</style>
+</head>
+<body>
+<%@ include file="header.jsp"%>
+    <div id="map" style="width: 50%; height: 550px; margin: 0 auto; text-align: center;"></div>
+    <br>
+    <div id="result" style="margin: 0 auto; text-align: center;"></div>
+    <hr>
+    <div class="button-group">
+        <button id="b1" value="부산 특별시  영화관">부산</button>
+        <button id="b2" value="대구 광역시  영화관">대구</button>
+        <button id="b3" value="서울 특별시  영화관">강남</button>
+        <button id="b4" value="서울 특별시 영화관">영등포</button>
+        <button id="b5" value="경기도 부천 영화관">부천</button>
+        <button id="b6" value="경기도 김포 영화관">김포</button>
+        <button id="all">전체보기</button>
+    </div>
+</body>
+</html>
+
+
+
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
@@ -321,3 +472,4 @@
     </script>
 </body>
 </html>
+ --%>

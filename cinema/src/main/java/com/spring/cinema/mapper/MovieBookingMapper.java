@@ -22,13 +22,17 @@ public interface MovieBookingMapper {
 
 	List<Theater> getTheaterBymovieId(@Param(value = "movieId")int movieId);
 
-	List<MovieInfo> getdateBymovieId(@Param(value = "theaterId")int theaterId);
+	List<MovieInfo> getdateBymovieId(@Param(value = "theaterId")int theaterId, @Param(value = "movieId")int movieId);
 
-	List<MovieInfo> gettimeBymovieId(@Param(value = "movieInfoDate")Date movieInfoDate);
+	List<MovieInfo> gettimeBymovieId(@Param(value = "movieInfoDate")Date movieInfoDate, 
+									@Param(value = "movieId")int movieId, 
+									@Param(value = "theaterId")int theaterId);
 
 	int savebooking(MovieBooking bookInfo);
 
 	ArrayList<BookingInfo> getBookByuserId(@Param(value = "userId")String userId);
+
+
 	
 	
 }

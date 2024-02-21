@@ -29,5 +29,14 @@
       AND mi.movie_id = #{movieId}
       AND mi.movie_info_date = #{date}
    </select>
-
+	
+	<select id="selectOne" parameterType="String" resultType ="Theater">
+		select * 
+		from theater
+		where theater_loc = #{theaterLoc}
+	</select>
+	<select id="selectList" resultType ="Theater">
+		select * 
+		from theater
+	</select>
 </mapper>

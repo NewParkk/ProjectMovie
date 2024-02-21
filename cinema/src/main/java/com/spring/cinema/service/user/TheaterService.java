@@ -14,5 +14,9 @@ public interface TheaterService {
 	   List<MovieInfo> getAvailableTimesByTheaterIdAndMovieIdAndDate(int theaterId, int movieId, String date);
 
 	   String saveBooking(MovieInfo bookInfo);
+
+	   Theater one(String theaterLoc);
+
+	    List<Theater> all();
 	  
 }

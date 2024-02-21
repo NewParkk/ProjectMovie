@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Theater {
     private  int theaterId;
-    private  int movieId;
     private  String theaterLoc;
+	private float lat;
+	private float lon;
 }

@@ -70,7 +70,7 @@ public class MovieBookingController {
 	public ModelAndView dateInfo(@RequestBody MovieInfo movieInfo) {
 		System.out.println(movieInfo);
 		System.out.println("여기;까지");
-		List<MovieInfo> dateList = movieBookingService.getdateBymovieId(movieInfo.getTheaterId());
+		List<MovieInfo> dateList = movieBookingService.getdateBymovieId(movieInfo.getTheaterId(),movieInfo.getMovieId());
 		System.out.println(dateList);
 		ModelAndView mv = new ModelAndView("jsonView");
 		String resultCode = "F000";
@@ -88,7 +88,9 @@ public class MovieBookingController {
 	@ResponseBody
 	public ModelAndView timeInfo(@RequestBody MovieInfo movieInfo) {
 		System.out.println(movieInfo);
-		List<MovieInfo> timeList = movieBookingService.gettimeBymovieId(movieInfo.getMovieInfoDate());
+		List<MovieInfo> timeList = movieBookingService.gettimeBymovieId(movieInfo.getMovieInfoDate(),
+																		movieInfo.getMovieId(),
+																		movieInfo.getTheaterId());
 		if(timeList == null) {
 			System.out.println("아무것도없어");
 		}

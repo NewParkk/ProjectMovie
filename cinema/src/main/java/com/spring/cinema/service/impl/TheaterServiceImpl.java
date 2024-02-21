@@ -22,6 +22,16 @@ public class TheaterServiceImpl implements TheaterService {
       this.theaterMapper = theaterMapper;
    }
    
+   
+   public Theater one(String theaterLoc) {
+	   return theaterMapper.selectOne(theaterLoc);
+   }
+
+	public List<Theater> all() {
+	   return theaterMapper.selectList();
+   }
+   
+   
    @Override
    public List<Theater> getAllTheaters() {
       return theaterMapper.getAllTheaters();

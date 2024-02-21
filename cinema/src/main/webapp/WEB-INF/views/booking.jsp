@@ -189,6 +189,8 @@ function infoList(obj, movieId, theaterId, movieInfoDate, movieInfoTime){
 
         data = {
                 "movieInfoDate" : movieInfoDate,
+                "theaterId" : theaterId,
+                "movieId" : movieId
             }
         listFlag = "timeList";
         url = "/book/"+listFlag;
@@ -199,7 +201,8 @@ function infoList(obj, movieId, theaterId, movieInfoDate, movieInfoTime){
         $(".theater-list p").removeClass("active");
         $(obj).addClass("active");
         data = {
-            "theaterId" : theaterId
+            "theaterId" : theaterId,
+            "movieId" : movieId
         }
         listFlag = "dateList";
         url = "/book/"+listFlag;

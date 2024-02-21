@@ -77,36 +77,15 @@
                     <input type="date" id="movieDate" name="movieDate" value="${movie.movieDate}" required>
                 </div>
                 <div class="form-group">
+                    <label for="movieImgUrl">포스터</label>
+                    <input type="text" id="movieImgUrl" name="movieImgUrl" value="${movie.movieImgUrl}" required>
+                </div>
+                <div class="form-group">
                     <input type="submit" value="수정 완료" class="Btn">
                 </div>
             </form>
         </div>
     </main>
-
-    <div class="container" style="height:50px;">
-        <span style="font-size:12pt;"><input type="button" value="삭제하기" class="Btn" onclick="deleteMovie(${movieId})"></span>
-    </div>
-    
-    
-<script>
-function deleteMovie(movieId) {
-   
-    if (confirm("정말로 삭제하시겠습니까?")) {
-        $.ajax({
-            url: '/deleteMovie/' + movieId,
-            type: 'POST',
-            success: function(data) {
-            	alert(data);
-                if (data === "영화 정보가 삭제되었습니다.") {
-                    window.location.href = 'redirect:/adminPage';
-                }
-            },
-            error: function (error) {
-                console.error('에러:', error.statusText);
-            }
-        });
-    }
-}
-</script>     
+  
 </body>
 </html>

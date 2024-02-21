@@ -157,9 +157,10 @@ function deleteMovie(movieId) {
             success: function(message) {
                 console.log('Delete success:', message);
                 alert(message);
-                if (message === "영화 정보가 삭제되었습니다.") {
+                if (message === "complete remove movie") {
                     // 삭제 후에 해당 열을 DOM에서 제거
                     $("tr[data-movieId='" + movieId + "']").remove();
+                    location.reload()
                 }
             },
             error: function (error) {

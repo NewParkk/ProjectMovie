@@ -18,9 +18,9 @@ public interface MovieBookingService {
 
 	List<Theater> getTheaterBymovieId(int movieId);
 
-	List<MovieInfo> getdateBymovieId(int theaterId);
+	List<MovieInfo> getdateBymovieId(int theaterId, int movieId);
 
-	List<MovieInfo> gettimeBymovieId(Date movieInfoDate);
+	List<MovieInfo> gettimeBymovieId(Date movieInfoDate, int movieId, int theaterId);
 
 	String savebooking(MovieBooking bookInfo);
 

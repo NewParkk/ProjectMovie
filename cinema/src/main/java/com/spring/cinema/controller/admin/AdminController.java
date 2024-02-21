@@ -63,7 +63,7 @@ public class AdminController {
 	// 영화 정보 수정
 	 @PostMapping("/updateMovie/{movieId}")
 	 public String updateMovie(@PathVariable Long movieId, @ModelAttribute Movie updatedMovie, RedirectAttributes redirectAttributes) {
-
+		 System.out.println(updatedMovie);
 	     // 수정된 영화 정보를 저장합니다.
 	     adminService.updateMovie(updatedMovie);
 
@@ -83,9 +83,9 @@ public class AdminController {
 	     // 영화 정보를 삭제합니다.
 	     adminService.deleteMovie(movieToDelete);
 
-	     addRedirectMessage(redirectAttributes,"영화 정보가 삭제되었습니다.");
+	     addRedirectMessage(redirectAttributes,"complete remove movie");
 	     
-	     return "영화 정보가 삭제되었습니다.";
+	     return "complete remove movie";
 	 }
 	
 	

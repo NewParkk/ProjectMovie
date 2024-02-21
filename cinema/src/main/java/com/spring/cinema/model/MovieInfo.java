@@ -5,9 +5,11 @@ package com.spring.cinema.model;
 import java.sql.Date;
 import java.sql.Time;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class MovieInfo {

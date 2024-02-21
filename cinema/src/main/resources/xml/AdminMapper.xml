@@ -43,7 +43,7 @@
         	movie_story = #{movieStory},
         	movie_date = #{movieDate},
         	director_name = #{directorName},
-        	movie_url = #{movieUrl}
+        	movie_img_url = #{movieImgUrl}
     	WHERE movie_id = #{movieId}
   	</update>
   
